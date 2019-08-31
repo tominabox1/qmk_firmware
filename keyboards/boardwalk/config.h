@@ -82,3 +82,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_HUE_STEP 12 // units to step when in/decreasing hue
 #define RGBLIGHT_SAT_STEP 25 // units to step when in/decresing saturation
 #define RGBLIGHT_VAL_STEP 12 // units to step when in/decreasing value (brightness)
+
+/* tap dance options */
+/* set tap time between multiple taps using tap dance */
+/* set tap count to 3 */
+#define TAPPING_TERM 150
+#define TAPPING_TOGGLE 3
