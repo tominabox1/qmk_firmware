@@ -16,6 +16,4 @@
 
 #pragma once
 
-#define TAPPING_TERM 200
-
 // place overrides here

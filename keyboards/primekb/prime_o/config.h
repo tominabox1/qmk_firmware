@@ -50,3 +50,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
+
+/* tap dance options */
+/* set tap time between multiple taps using tap dance */
+/* set tap count to 3 */
+#define TAPPING_TERM 135
+#define TAPPING_TOGGLE 3
