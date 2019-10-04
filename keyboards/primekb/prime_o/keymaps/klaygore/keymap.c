@@ -25,12 +25,15 @@
 
 // Establishes tap dance keys
 enum {
-  SPC_ENT = 0
+  SPC_ENT = 0,
+  SP_PUNC,
+  NXT_PRV,
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT)
-
+  [SPC_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+  [SP_PUNC] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_SCLN),
+  [NXT_PRV] = ACTION_TAP_DANCE_DOUBLE(KC_MNXT,KC_MPRV),
 };
 
 // Defines the keycodes used by our macros in process_record_user
@@ -43,14 +46,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* [0] BASE
  * ,---------------------------------------------------------------------------------------------------------------,
- * | ESC  |  1   |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |  0   | ` ~  | NMLK | HOME |  END |  /   |
- * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+ * | ESC  |  1   |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |  0   | ` ~  | NMLK | PLAY | NEXT |  /   |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |      |      | PREV |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * | Tab  |  Q   |  W   |  E   |  R   |  T   |  Y   |  U   |  I   |  O   |  P   |  \   |  7   |  8   |  9   |  *   |
  * |      |      |      |      |      |      |      |      |      |      |      | RGUI | HOME | UP   |PGUP  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
- * | CAPS |  A   |  S   |  D   |  F   |  G   |  H   |  J   |  K   |  L   |  "   |ENTER |  4   |  5   |  6   |  -   |
- * | SHIFT|      |      |      |      |      |      |      |      |      |      |SHIFT | LEFT |      | RIGHT|      |
+ * | CAPS |  A   |  S   |  D   |  F   |  G   |  H   |  J   |  K   |  L   |  '"  |ENTER |  4   |  5   |  6   |  -   |
+ * | SHIFT|      |      |      |      |      |      |      |      |      |  ;:  |SHIFT | LEFT |      | RIGHT|      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |  Z   |  X   |  C   |  V   |  B   |  N   |  M   |  ,   |  .   |  /   |  Up  |  1   |  2   |  3   |  +   |
  * | DEL  |      |      |      |      |      |      |      |      |      |      |      | END  | DOWN |PGDN  |      |
@@ -61,23 +64,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [0] = LAYOUT(
-    KC_ESC,   		 KC_1,     KC_2,     KC_3,     KC_4,    		 KC_5,    		   KC_6,    KC_7,    KC_8,     KC_9,       KC_0,    KC_GRV,   		 KC_NLCK,    KC_HOME,   KC_END,    KC_PSLS,
-    KC_TAB,   		 KC_Q,     KC_W,     KC_E,     KC_R,    	 	 KC_T,    		   KC_Y,    KC_U,    KC_I,     KC_O,       KC_P,    RGUI_T(KC_BSLS), KC_P7,      KC_P8,     KC_P9,     RALT_T(KC_PAST),
-    LSFT_T(KC_CAPS), KC_A,     KC_S,     KC_D,     KC_F,    		 KC_G,    	   	   KC_H,    KC_J,    KC_K,     KC_L,       KC_QUOT, RSFT_T(KC_ENT),  KC_P4,      KC_P5,     KC_P6,     KC_PMNS,
-    KC_DEL,  		 KC_Z,     KC_X,     KC_C,     KC_V,    		 KC_B,    		   KC_N,    KC_M,    KC_COMM,  KC_DOT,     KC_SLSH, KC_UP,    		 KC_P1,      KC_P2,     KC_P3,     KC_PPLS,
-    KC_LCTL,  		 KC_LALT,  TT(2),    KC_LGUI,  LALT_T(KC_BSPC),  LALT_T(KC_BSPC),  KC_SPC,  KC_SPC,  TT(3),    LCTL(KC_F), KC_LEFT, KC_DOWN,  		 KC_RIGHT,   KC_0,      KC_PDOT,   RCTL_T(KC_ENT)
+    KC_ESC,   		 KC_1,    KC_2,     KC_3,     KC_4,    		KC_5,    		  KC_6,    KC_7,    KC_8,     KC_9,     KC_0,    	 KC_GRV,   		  KC_NLCK,   KC_MPLY, TD(NXT_PRV), KC_PSLS,
+    KC_TAB,   		 KC_Q,    KC_W,     KC_E,     KC_R,    	 	KC_T,    		  KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,    	 RGUI_T(KC_BSLS), KC_P7,     KC_P8,   KC_P9,       RALT_T(KC_PAST),
+    LSFT_T(KC_CAPS), KC_A,    KC_S,     KC_D,     KC_F,    		KC_G,    	   	  KC_H,    KC_J,    KC_K,     KC_L,     TD(SP_PUNC), RSFT_T(KC_ENT),  KC_P4,     KC_P5,   KC_P6,       KC_PMNS,
+    KC_DEL,  		 KC_Z,    KC_X,     KC_C,     KC_V,    		KC_B,    		  KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH, 	 KC_UP,    		  KC_P1,     KC_P2,   KC_P3,       KC_PPLS,
+    KC_LCTL,  		 KC_LALT, TT(2),    KC_LGUI,  LALT_T(KC_BSPC), LALT_T(KC_BSPC),  KC_SPC,  KC_SPC,  TT(3),    LCTL(KC_F), KC_LEFT, KC_DOWN,  KC_RIGHT,  KC_0,    KC_PDOT,     RCTL_T(KC_ENT)
   ),
 
 /* [1] GAME
  * ,---------------------------------------------------------------------------------------------------------------,
- * | ESC  |  1   |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |  0   | BKSPC| NMLK | HOME |  END |  /   |
- * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+ * | ESC  |  1   |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |  0   | BKSPC| NMLK | PLAY | NEXT |  /   |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |      |      | PREV |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * | Tab  |  Q   |  W   |  E   |  R   |  T   |  Y   |  U   |  I   |  O   |  P   |  \   |  7   |  8   |  9   |  *   |
  * |      |      |      |      |      |      |      |      |      |      |      |      | HOME | UP   |PGUP  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
- * | CAPS |  A   |  S   |  D   |  F   |  G   |  H   |  J   |  K   |  L   |  "   |ENTER |  4   |  5   |  6   |  -   |
- * | SHIFT|      |      |      |      |      |      |      |      |      |      |SHIFT | LEFT |      | RIGHT|      |
+ * | CAPS |  A   |  S   |  D   |  F   |  G   |  H   |  J   |  K   |  L   |  '"  |ENTER |  4   |  5   |  6   |  -   |
+ * | SHIFT|      |      |      |      |      |      |      |      |      |  ;:  |SHIFT | LEFT |      | RIGHT|      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |  Z   |  X   |  C   |  V   |  B   |  N   |  M   |  ,   |  .   |  /   |  Up  |  1   |  2   |  3   |  +   |
  * | DEL  |      |      |      |      |      |      |      |      |      |      |      | END  | DOWN |PGDN  |      |
@@ -88,11 +91,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [1] = LAYOUT(
-    KC_ESC,   		 KC_1,     KC_2,     KC_3,     KC_4,    KC_5,    KC_6,    KC_7,    KC_8,     KC_9,       KC_0,     KC_BSPC,   	   KC_NLCK,    KC_HOME,   KC_END,    KC_PSLS,
-    KC_TAB,   		 KC_Q,     KC_W,     KC_E,     KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,     KC_O,       KC_P,     KC_BSLS,  	   KC_P7,      KC_P8,     KC_P9,     RALT_T(KC_PAST),
-    LSFT_T(KC_CAPS), KC_A,     KC_S,     KC_D,     KC_F,    KC_G,    KC_H,    KC_J,    KC_K,     KC_L,       KC_QUOT,  RSFT_T(KC_ENT), KC_P4,      KC_P5,     KC_P6,     KC_PMNS,
-    KC_DEL,  		 KC_Z,     KC_X,     KC_C,     KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,     KC_SLSH,  KC_UP,    	   KC_P1,      KC_P2,     KC_P3,     KC_PPLS,
-    KC_LCTL,  		 KC_LALT,  TT(2),    KC_LGUI,  KC_SPC,  KC_SPC,  KC_SPC,  KC_SPC,  TT(3),    LCTL(KC_F), KC_LEFT,  KC_DOWN,  	   KC_RIGHT,   KC_0,      KC_PDOT,   RCTL_T(KC_ENT)
+    KC_ESC,   		 KC_1,     KC_2,     KC_3,     KC_4,    KC_5,    KC_6,    KC_7,    KC_8,     KC_9,       KC_0,     	   KC_BSPC,   	   KC_NLCK,    KC_MPLY,   TD(NXT_PRV), KC_PSLS,
+    KC_TAB,   		 KC_Q,     KC_W,     KC_E,     KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,     KC_O,       KC_P,     	   KC_BSLS,  	   KC_P7,      KC_P8,     KC_P9,       RALT_T(KC_PAST),
+    LSFT_T(KC_CAPS), KC_A,     KC_S,     KC_D,     KC_F,    KC_G,    KC_H,    KC_J,    KC_K,     KC_L,       TD(SP_PUNC),  RSFT_T(KC_ENT), KC_P4,      KC_P5,     KC_P6,       KC_PMNS,
+    KC_DEL,  		 KC_Z,     KC_X,     KC_C,     KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,     KC_SLSH,      KC_UP,    	   KC_P1,      KC_P2,     KC_P3,       KC_PPLS,
+    KC_LCTL,  		 KC_LALT,  TT(2),    KC_LGUI,  KC_SPC,  KC_SPC,  KC_SPC,  KC_SPC,  TT(3),    LCTL(KC_F), KC_LEFT,      KC_DOWN,  	   KC_RIGHT,   KC_0,      KC_PDOT,     RCTL_T(KC_ENT)
   ),
 
 /* [2] SYMBOL
@@ -104,33 +107,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------|------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |  ;:  |      |      |      |      |      |
- * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |   _  |
+ * | PREV |      |      |      |      |      |      |      |      |      |      |      |      |      |      |   _  |
  * |------+------|------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
- * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+ * | PLAY |      |      |      |      |      |      |      |      |      |      |      |      |      |      |   =  |
  * |------+------|------+------+------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |             |             |      |      |      |      |      |      |      |      |
- * |      |      |      |      |             |             |      |      |      |      |      |      |      | lyr3 |
+ * |      | PRINT|      |      |             |             |      |      |      |      |      |      |      |      |
+ * | NEXT |SCREEN|      |      |             |             |      |      |      |      |      |      |      | lyr3 |
  * `---------------------------------------------------------------------------------------------------------------'
  */
 
 	[2] = LAYOUT(
     _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,  _______,  KC_PIPE,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_LBRC,  KC_RBRC,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_SCLN,  _______,  _______,  _______,  _______,  KC_UNDS,
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  MO(3)
+    KC_MPRV,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_SCLN,  _______,  _______,  _______,  _______,  KC_UNDS,
+    KC_MPLY,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_EQL,
+    KC_MNXT,  KC_PSCR,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  MO(3)
   ),
 
 /* [3] SYSTEM
  * ,---------------------------------------------------------------------------------------------------------------,
- * |DEF   |DEF   |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |DEF   |DEF   |      |      |      |      |      |      |      |      |      |      |      |      |      |RESET |
  * |LYR0  |LYR1  |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+-------------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
  * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------|------+------+------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      | RESET|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
  * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------|------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |

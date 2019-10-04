@@ -54,5 +54,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* tap dance options */
 /* set tap time between multiple taps using tap dance */
 /* set tap count to 3 */
-#define TAPPING_TERM 135
+#define TAPPING_TERM 150
 #define TAPPING_TOGGLE 3
