@@ -29,7 +29,9 @@ enum {
   SP_PUNC,
   NXT_PRV,
   DSH_UND,
-  PLS_EQL
+  PLS_EQL,
+  MIN_GRV,
+  NML_PLS
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -37,7 +39,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [SP_PUNC] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, KC_SCLN),
   [NXT_PRV] = ACTION_TAP_DANCE_DOUBLE(KC_MNXT,KC_MPRV),
   [DSH_UND] = ACTION_TAP_DANCE_DOUBLE(KC_PMNS,KC_UNDS),
-  [PLS_EQL] = ACTION_TAP_DANCE_DOUBLE(KC_PPLS,KC_EQL)
+  [PLS_EQL] = ACTION_TAP_DANCE_DOUBLE(KC_PPLS,KC_EQL),
+  [MIN_GRV] = ACTION_TAP_DANCE_DOUBLE(KC_MINS,KC_GRV),
+  [NML_PLS] = ACTION_TAP_DANCE_DOUBLE(KC_EQL,KC_NLCK)
 };
 
 // Defines the keycodes used by our macros in process_record_user
@@ -68,11 +72,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [0] = LAYOUT(
-    KC_ESC,   	     KC_1,    KC_2,     KC_3,     KC_4,            KC_5,             KC_6,    KC_7,    KC_8,     KC_9,       KC_0,    	   KC_GRV,          KC_NLCK,   KC_MPLY, TD(NXT_PRV), KC_PSLS,
-    KC_TAB,          KC_Q,    KC_W,     KC_E,     KC_R,            KC_T,             KC_Y,    KC_U,    KC_I,     KC_O,       KC_P,    	   RGUI_T(KC_BSLS), KC_P7,     KC_P8,   KC_P9,       RALT_T(KC_PAST),
-    LSFT_T(KC_CAPS), KC_A,    KC_S,     KC_D,     KC_F,            KC_G,             KC_H,    KC_J,    KC_K,     KC_L,       TD(SP_PUNC),  RSFT_T(KC_ENT),  KC_P4,     KC_P5,   KC_P6,       TD(DSH_UND),
-    KC_DEL,          KC_Z,    KC_X,     KC_C,     KC_V,            KC_B,             KC_N,    KC_M,    KC_COMM,  KC_DOT,     KC_SLSH,      KC_UP,           KC_P1,     KC_P2,   KC_P3,       TD(PLS_EQL),
-    KC_LCTL,  	     KC_LALT, TT(2),    KC_LGUI,  LALT_T(KC_BSPC), LALT_T(KC_BSPC),  KC_SPC,  KC_SPC,  TT(3),    LCTL(KC_F), KC_LEFT,      KC_DOWN,         KC_RIGHT,  KC_0,    KC_PDOT,     RCTL_T(KC_ENT)
+    KC_ESC,   	     KC_1,    KC_2,     KC_3,     KC_4,            KC_5,             KC_6,    KC_7,    KC_8,     KC_9,       KC_0,    	   TD(MIN_GRV),     TD(NML_PLS), KC_MPLY, TD(NXT_PRV), KC_PSLS,
+    KC_TAB,          KC_Q,    KC_W,     KC_E,     KC_R,            KC_T,             KC_Y,    KC_U,    KC_I,     KC_O,       KC_P,    	   RGUI_T(KC_BSLS), KC_P7,       KC_P8,   KC_P9,       RALT_T(KC_PAST),
+    LSFT_T(KC_CAPS), KC_A,    KC_S,     KC_D,     KC_F,            KC_G,             KC_H,    KC_J,    KC_K,     KC_L,       TD(SP_PUNC),  RSFT_T(KC_ENT),  KC_P4,       KC_P5,   KC_P6,       TD(DSH_UND),
+    KC_DEL,          KC_Z,    KC_X,     KC_C,     KC_V,            KC_B,             KC_N,    KC_M,    KC_COMM,  KC_DOT,     KC_SLSH,      KC_UP,           KC_P1,       KC_P2,   KC_P3,       TD(PLS_EQL),
+    KC_LCTL,  	     KC_LALT, TT(2),    KC_LGUI,  LALT_T(KC_BSPC), LALT_T(KC_BSPC),  KC_SPC,  KC_SPC,  TT(3),    LCTL(KC_F), KC_LEFT,      KC_DOWN,         KC_RIGHT,    KC_0,    KC_PDOT,     RCTL_T(KC_ENT)
   ),
 
 /* [1] GAME
@@ -113,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      |      |      |  ;:  |      |      |      |      |      |
  * | PREV |      |      |      |      |      |      |      |      |      |      |      |      |      |      |   _  |
  * |------+------|------+------+------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      | MUTE |      |      |      |      |      |      |      |      |
  * | PLAY |      |      |      |      |      |      |      |      |      |      |      |      |      |      |   =  |
  * |------+------|------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |  PRINT      |             |      |      |      |      |      |      |      |      |
@@ -126,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_LBRC,  KC_RBRC,  _______,  _______,  _______,  _______,  _______,
     KC_MPRV,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_SCLN,  _______,  _______,  _______,  _______,  KC_UNDS,
     KC_MPLY,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_EQL,
-    KC_MNXT,  _______,  _______,  _______,  KC_PSCR,  KC_PSCR,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  MO(3)
+    KC_MNXT,  _______,  _______,  _______,  KC_PSCR,  KC_PSCR,  KC_PSCR,  KC_PSCR,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  MO(3)
   ),
 
 /* [3] SYSTEM
