@@ -31,7 +31,9 @@ enum {
   DSH_UND,
   PLS_EQL,
   MIN_GRV,
-  NML_PLS
+  NML_PLS,
+  P_DB_TP,
+  KC_TRI_P
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -41,7 +43,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [DSH_UND] = ACTION_TAP_DANCE_DOUBLE(KC_PMNS,KC_UNDS),
   [PLS_EQL] = ACTION_TAP_DANCE_DOUBLE(KC_PPLS,KC_EQL),
   [MIN_GRV] = ACTION_TAP_DANCE_DOUBLE(KC_MINS,KC_GRV),
-  [NML_PLS] = ACTION_TAP_DANCE_DOUBLE(KC_EQL,KC_NLCK)
+  [NML_PLS] = ACTION_TAP_DANCE_DOUBLE(KC_EQL,KC_NLCK),
+  [P_DB_TP] = ACTION_TAP_DANCE_DOUBLE(KC_P,LSFT(KC_P)),
+  [KC_TRI_P] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, dance_cln_finished, dance_cln_reset)
 };
 
 // Defines the keycodes used by our macros in process_record_user
@@ -100,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [1] = LAYOUT(
     KC_ESC,   	     KC_F1,    KC_F2,    KC_F3,    KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,          KC_F9,      KC_F10,   KC_BSPC, KC_NLCK,    KC_MPLY,   TD(NXT_PRV), KC_PSLS,
-    KC_TAB,    	     KC_Q,     KC_W,     KC_E,     KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,           KC_O,       KC_P,     KC_BSLS, KC_P7,      KC_P8,     KC_P9,       RALT_T(KC_PAST),
+    KC_TAB,    	     KC_Q,     KC_W,     KC_E,     KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,           KC_O,       TD(KC_TRI_P),     KC_BSLS, KC_P7,      KC_P8,     KC_P9,       RALT_T(KC_PAST),
     LSFT_T(KC_CAPS), KC_A,     KC_S,     KC_D,     KC_F,    KC_G,    KC_H,    KC_J,    KC_K,           KC_L,       KC_SCLN,  KC_QUOT, KC_P4,      KC_P5,     KC_P6,       TD(DSH_UND),
     KC_LCTL,  	     KC_Z,     KC_X,     KC_C,     KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,        KC_DOT,     KC_SLSH,  KC_UP,   KC_P1,      KC_P2,     KC_P3,       TD(PLS_EQL),
     KC_LALT,         KC_NO,    KC_LGUI,  TT(3),    KC_SPC,  KC_SPC,  KC_SPC,  KC_SPC,  RSFT_T(KC_ENT), TT(2),      KC_LEFT,  KC_DOWN, KC_RIGHT,   KC_0,      KC_PDOT,     RCTL_T(KC_EQL)
@@ -161,6 +165,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ), 
 
 };
+
+
+void dance_cln_finished (qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        register_code (KC_P);
+	}	
+    if (state->count == 2) {
+        register_code (KC_LSFT);
+        register_code (KC_P);
+	}	
+     if (state->count == 3) {
+        register_code (KC_LCTRL);
+        register_code (KC_P);
+    } else {}
+}
+
+void dance_cln_reset (qk_tap_dance_state_t *state, void *user_data) {
+        unregister_code (KC_P);
+        unregister_code (KC_LSFT);
+        unregister_code (KC_LCTL);
+}
+
+
 
 /*
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
