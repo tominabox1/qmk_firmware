@@ -1,4 +1,5 @@
-#pragma once
+#ifndef KEYBOARDS_qaz_BLE_REV1_REV1_H_
+#define KEYBOARDS_qaz_BLE_REV1_REV1_H_
 
 #include "quantum.h"
 
@@ -31,3 +32,5 @@
 { K40, K41, K42, K43, K44, XXX, XXX }, \
 { K50, K51, K52, K53, XXX, XXX, XXX } \
 }
+
+#endif

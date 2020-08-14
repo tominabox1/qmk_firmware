@@ -1,4 +1,7 @@
-#pragma once
+#ifndef KEYBOARDS_qaz_BLE_H_
+#define KEYBOARDS_qaz_BLE_H_
 
 #include "quantum.h"
-#include "pro_v1.h"
+#include "rev1.h"
+
+#endif

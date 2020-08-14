@@ -15,7 +15,7 @@ SECTIONS
 
 SECTIONS
 {
-  . = ALIGN(4);
+  . = ALIGN(16);
   .mem_section_dummy_ram :
   {
   }

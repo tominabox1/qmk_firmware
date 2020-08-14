@@ -1,5 +1,6 @@
 /*
-Copyright 2018 Sekigon
+Copyright 2018 Marksard
+Copyright 2019 Sekigon
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MATRIX_HAS_GHOST
 
 /* Set 0 if debouncing isn't needed */
-#define DEBOUNCE    1
+#define DEBOUNCE    15
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
@@ -47,15 +48,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
 
-// #define RGB_DI_PIN F7
+#define TAPPING_TERM 200
+#define PREVENT_STUCK_MODIFIERS
+#define IGNORE_MOD_TAP_INTERRUPT
+//#define DEBUG_ACTION
 
-// #ifdef RGB_DI_PIN
-// #define RGBLIGHT_ANIMATIONS
-// #define RGBLED_NUM 21
-// #define RGBLIGHT_HUE_STEP 8
-// #define RGBLIGHT_SAT_STEP 8
-// #define RGBLIGHT_VAL_STEP 8
-// #endif
+//#define RGBLIGHT_ANIMATIONS
+//#define RGB_DI_PIN 8     // The pin the LED strip is connected to
+//#define RGBLED_NUM 5     // Number of LEDs in your strip
+
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
