@@ -1,4 +1,4 @@
-DEFAULT_FOLDER = qaz_ble/rev1
+DEFAULT_FOLDER = alpha_ble/rev1
 
 NRF_DEBUG = no
 

@@ -4,16 +4,16 @@
 // #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID 0x7431
-#define PRODUCT_ID 0x0001
-#define DEVICE_VER 0x0001
-#define MANUFACTURER whydobearsexplod
-#define PRODUCT qaz keyboard
-
+#define VENDOR_ID       0xFEED
+#define PRODUCT_ID      0x6060
+#define DEVICE_VER      0x0001
+#define MANUFACTURER    PyroL
+#define PRODUCT         alpha
+#define DESCRIPTION     28-key keyboard by PyroL
 
 /* key matrix size */
-#define MATRIX_ROWS 6
-#define MATRIX_COLS 7
+#define MATRIX_ROWS 3
+#define MATRIX_COLS 10
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
@@ -25,7 +25,7 @@
 #endif
 
 /* Set 0 if debouncing isn't needed */
-#define DEBOUNCING_DELAY 5
+#define DEBOUNCING_DELAY 15
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
@@ -41,8 +41,13 @@
 /* prevent stuck modifiers */
 #define PREVENT_STUCK_MODIFIERS
 
-#define PROGMEM
-
-#define BOOTLOADER_METHOD_ADAFUIT_UF2
+#define RGB_DI_PIN F4
+#ifdef RGB_DI_PIN
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 5
+#define RGBLIGHT_HUE_STEP 8
+#define RGBLIGHT_SAT_STEP 8
+#define RGBLIGHT_VAL_STEP 8
+#endif
 
 #endif

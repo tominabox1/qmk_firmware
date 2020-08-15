@@ -45,7 +45,6 @@
 extern "C" {
 #endif
 
-
 //#include "nrf_gpio.h
 
 //#define NRF_LOG_ENABLED 0
