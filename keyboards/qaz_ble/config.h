@@ -43,5 +43,6 @@
 
 #define PROGMEM
 
+#define BOOTLOADER_METHOD_ADAFUIT_UF2
 
 #endif
