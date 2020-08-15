@@ -2,6 +2,6 @@
 #define KEYBOARDS_qaz_BLE_H_
 
 #include "quantum.h"
-#include "rev1.h"
+#include "rev1.c"
 
 #endif

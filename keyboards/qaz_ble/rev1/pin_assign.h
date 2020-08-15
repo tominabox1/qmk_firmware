@@ -54,9 +54,12 @@
 #define F4 GPIO(0,31)
 
 #define THIS_DEVICE_ROWS 6
-#define MATRIX_ROW_PINS { F4, F5, F6, F7, B1, B3 }
+#define MATRIX_ROW_PINS { F4, D4, C6, E6, D1, D0 }
 
-#define THIS_DEVICE_COLS 6
-#define MATRIX_COL_PINS { D4, C6, D7, E6, B4, B5 }
+#define THIS_DEVICE_COLS 7
+#define MATRIX_COL_PINS { B4, D3, D2, F5, B5, F6, D7 }
+
+#define UNUSED_PINS
+
 
 #endif /* KEYBOARDS_stonehenge30_BLE_REV1_PIN_ASSIGN_H_ */

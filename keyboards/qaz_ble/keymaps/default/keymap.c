@@ -51,10 +51,6 @@ enum custom_keycodes {
   ENT_SLP, /* Deep sleep mode                      */
 };
 
-// #define KC_KNRM  AG_NORM
-// #define KC_KSWP  AG_SWAP
-// #define KC_DEBUG DEBUG
-
 // #define KC_RST   ENT_DFU
 // #define KC_BATT  BATT_LV
 // #define KC_BTON  BLE_EN
@@ -68,31 +64,13 @@ enum custom_keycodes {
 // #define KC_BTID3 ADV_ID3
 // #define KC_BTID4 ADV_ID4
 
-// // Base layer mod tap
-// #define KC_A_SF  LSFT_T(KC_A)
-// #define KC_Z_CT  LCTL_T(KC_Z)
-// #define KC_X_AL  LALT_T(KC_X)
-// #define KC_C_GU  LGUI_T(KC_C)
-// #define KC_M_CT  LCTL_T(KC_M)
-// #define KC_ENSF  LSFT_T(KC_ENT)
-
-// // Lower layer mod tap
-// #define KC_MNCT  LCTL_T(KC_MINS)
-
-// // Raise layer mod tap
-// #define KC_F6SF  LSFT_T(KC_F6)
-// #define KC_BSSF  LSFT_T(KC_BSLS)
-// #define KC_11CT  LCTL_T(KC_F11)
-// #define KC_SSCT  LCTL_T(KC_SLSH)
-// #define KC_12AL  LALT_T(KC_F12)
-
-// enum combo_events {
-//   COMBO_BSPC,
-//   COMBO_NUMBAK,
-//   COMBO_TAB,
-//   COMBO_ESC,
-//   COMBO_DEL,
-// };
+enum combo_events {
+  COMBO_BSPC,
+  COMBO_NUMBAK,
+  COMBO_TAB,
+  COMBO_ESC,
+  COMBO_DEL,
+};
 
 #define KC_NUM_SPC LT(_NUM_SYM, KC_SPC)
 #define KC_GA LGUI_T(KC_A)
@@ -107,9 +85,9 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_split_space(
     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,    KC_I,   KC_O,     KC_P,
-    KC_GA,  KC_AS,  KC_CD,  KC_SF,   KC_G,   KC_H,  KC_SJ,   KC_CK,  KC_AL, KC_ENT,
+    KC_GA,  KC_AS,  KC_CD,  KC_SF,   KC_G,   KC_H,  KC_SJ,   KC_CK,  KC_AL, KC_SCLN,
     KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M, KC_COMM, KC_DOT,
-    KC_LCTL, KC_LALT, KC_LGUI, KC_BSPC, LT(_NUM_SYM,KC_SPACE), KC_RALT, KC_RGUI, KC_RCTL
+    ENT_DFU, BATT_LV, USB_DIS, KC_BSPC, LT(_NUM_SYM,KC_SPACE), KC_ENT, KC_RGUI, KC_RCTL
   ),
 
   [_NUM_SYM] = LAYOUT_split_space(
@@ -141,6 +119,10 @@ static inline void update_change_layer(bool pressed, uint8_t layer1, uint8_t lay
 
   pressed ? layer_on(layer1) : layer_off(layer1);
   IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2) ? layer_on(layer3) : layer_off(layer3);
+}
+
+void keyboard_post_init_user(void) {
+  set_usb_enabled(false);
 }
 
 int RGB_current_mode;
