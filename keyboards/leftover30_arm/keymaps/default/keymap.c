@@ -136,12 +136,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
+    if (index == 0) { // Left encoder
         if (IS_LAYER_ON(_ADJUST)) {
           if (clockwise) {
-            //  rgblight_increase_hue_noeeprom();
+              rgblight_increase_hue_noeeprom();
           } else {
-            //   rgblight_decrease_hue_noeeprom();
+              rgblight_decrease_hue_noeeprom();
           }
         } else if (IS_LAYER_ON(_LOWER)) {
           tap_code16((clockwise == true) ? LCTL(KC_Y) : LCTL(KC_Z));
@@ -152,11 +152,26 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
 
     }
+    else if (index == 1) { //right encoder
+    if (IS_LAYER_ON(_ADJUST)) {
+          if (clockwise) {
+              rgblight_increase_hue_noeeprom();
+          } else {
+              rgblight_decrease_hue_noeeprom();
+          }
+        } else if (IS_LAYER_ON(_LOWER)) {
+          tap_code16((clockwise == true) ? LCTL(KC_Y) : LCTL(KC_Z));
+        } else if (IS_LAYER_ON(_RAISE)) {
+          tap_code16((clockwise == true) ? S(KC_DOWN) : S(KC_UP));
+        } else {
+          tap_code((clockwise == true) ? KC_WH_D : KC_WH_U);
+        }
+    }
 }
 
 // for exsample customize of LED inducator
-// bool led_update_user(led_t led_state) {
-//     writePin(D2, IS_LAYER_ON(_LOWER));
-//     writePin(D1, IS_LAYER_ON(_RAISE));
-//     return false;
-// }
+bool led_update_user(led_t led_state) {
+    writePin(B10, IS_LAYER_ON(_LOWER));
+    writePin(B11, IS_LAYER_ON(_RAISE));
+    return false;
+}

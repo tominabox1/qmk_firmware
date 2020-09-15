@@ -53,13 +53,8 @@
 
 #define DIODE_DIRECTION COL2ROW
 
-#define ENCODERS_PAD_A { B12 }
-#define ENCODERS_PAD_B { B14 }
-
-/* Uncomment if using right side encoder
- * #define ENCODERS_PAD_A { A7 }
- * #define ENCODERS_PAD_B { B0 }
- */
+#define ENCODERS_PAD_A { B12, A7 } // Left, Right
+#define ENCODERS_PAD_B { B14, B0 } // Left, Right
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 // #define DEBOUNCE 6
@@ -115,8 +110,9 @@
 #define RGBLED_NUM 6 // Change to 8 if utilizing the space bar LEDs
 #define DRIVER_LED_TOTAL RGBLED_NUM
 
-#define WS2812_PWM_DRIVER PWMD2
-#define WS2812_PWM_CHANNEL 2
-#define WS2812_PWM_PAL_MODE 1
+#define WS2812_PWM_DRIVER PWMD1
+#define WS2812_PWM_CHANNEL 1
+#define WS2812_PWM_PAL_MODE 2
 #define WS2812_DMA_STREAM STM32_DMA1_STREAM2
 #define WS2812_DMA_CHANNEL 2
+#define WS2812_DMAMUX_ID STM32_DMAMUX1_TIM2_UP
