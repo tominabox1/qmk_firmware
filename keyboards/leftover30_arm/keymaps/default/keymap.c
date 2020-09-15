@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                KC_Z_SF, KC_X_AL,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,     KC_SLSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_LGUI,                                KC_SPRA,                                 KC_LOWR, KC_RCTL
+      RESET, KC_LGUI,                                KC_SPRA,                                 KC_LOWR, KC_RCTL
   //`-----------------------------------------------------------------------------------------------------------'
   ),
 
@@ -139,9 +139,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (IS_LAYER_ON(_ADJUST)) {
           if (clockwise) {
-              rgblight_increase_hue_noeeprom();
+            //  rgblight_increase_hue_noeeprom();
           } else {
-              rgblight_decrease_hue_noeeprom();
+            //   rgblight_decrease_hue_noeeprom();
           }
         } else if (IS_LAYER_ON(_LOWER)) {
           tap_code16((clockwise == true) ? LCTL(KC_Y) : LCTL(KC_Z));
