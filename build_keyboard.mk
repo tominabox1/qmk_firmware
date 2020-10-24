@@ -96,13 +96,25 @@ MAIN_KEYMAP_PATH_2 := $(KEYBOARD_PATH_2)/keymaps/$(KEYMAP)
 MAIN_KEYMAP_PATH_3 := $(KEYBOARD_PATH_3)/keymaps/$(KEYMAP)
 MAIN_KEYMAP_PATH_4 := $(KEYBOARD_PATH_4)/keymaps/$(KEYMAP)
 MAIN_KEYMAP_PATH_5 := $(KEYBOARD_PATH_5)/keymaps/$(KEYMAP)
+MAIN_USER_KEYMAPS := users/$(KEYMAP)/keymaps
+
+KEYMAP_USER_PATH_1 := $(MAIN_USER_KEYMAPS)/$(KEYBOARD)
+KEYMAP_USER_PATH_2 := $(MAIN_USER_KEYMAPS)/$(subst /,_,$(KEYBOARD))
 
 # Check for keymap.json first, so we can regenerate keymap.c
 include build_json.mk
 
 ifeq ("$(wildcard $(KEYMAP_PATH))", "")
     # Look through the possible keymap folders until we find a matching keymap.c
-    ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_5)/keymap.c)","")
+    ifneq ("$(wildcard $(KEYMAP_USER_PATH_2)_keymap.c)","")
+        -include $(KEYMAP_USER_PATH_2)_rules.mk
+        KEYMAP_C := $(KEYMAP_USER_PATH_2)_keymap.c
+        KEYMAP_PATH := $(MAIN_USER_KEYMAPS)
+    else ifneq ("$(wildcard $(KEYMAP_USER_PATH_1)/keymap.c)","")
+        -include $(KEYMAP_USER_PATH_1)/rules.mk
+        KEYMAP_C := $(KEYMAP_USER_PATH_1)/keymap.c
+        KEYMAP_PATH := $(KEYMAP_USER_PATH_1)
+    else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_5)/keymap.c)","")
         -include $(MAIN_KEYMAP_PATH_5)/rules.mk
         KEYMAP_C := $(MAIN_KEYMAP_PATH_5)/keymap.c
         KEYMAP_PATH := $(MAIN_KEYMAP_PATH_5)
@@ -130,6 +142,12 @@ ifeq ("$(wildcard $(KEYMAP_PATH))", "")
         # this state should never be reached
     endif
 endif
+
+# Userspace setup and definitions
+ifeq ("$(USER_NAME)","")
+    USER_NAME := $(KEYMAP)
+endif
+USER_PATH := users/$(USER_NAME)
 
 ifeq ($(strip $(CTPC)), yes)
   CONVERT_TO_PROTON_C=yes
@@ -254,6 +272,9 @@ endif
 ifneq ("$(wildcard $(KEYBOARD_PATH_1)/config.h)","")
     CONFIG_H += $(KEYBOARD_PATH_1)/config.h
 endif
+ifneq ("$(wildcard $(USER_PATH)/config.h)","")
+    CONFIG_H += $(USER_PATH)/config.h
+endif
 
 POST_CONFIG_H :=
 ifneq ("$(wildcard $(KEYBOARD_PATH_1)/post_config.h)","")
@@ -278,17 +299,17 @@ ifeq ("$(USER_NAME)","")
 endif
 USER_PATH := users/$(USER_NAME)
 
+# Include the userspace rules.mk file
 -include $(USER_PATH)/rules.mk
-ifneq ("$(wildcard $(USER_PATH)/config.h)","")
-    CONFIG_H += $(USER_PATH)/config.h
-endif
 
 # Object files directory
 #     To put object files in current directory, use a dot (.), do NOT make
 #     this an empty or blank macro!
 KEYMAP_OUTPUT := $(BUILD_DIR)/obj_$(TARGET)
 
-ifneq ("$(wildcard $(KEYMAP_PATH)/config.h)","")
+ifneq ("$(wildcard $(KEYMAP_USER_PATH_2)_config.h)","")
+    CONFIG_H += $(KEYMAP_USER_PATH_2)_config.h
+else ifneq ("$(wildcard $(KEYMAP_PATH)/config.h)","")
     CONFIG_H += $(KEYMAP_PATH)/config.h
 endif
 

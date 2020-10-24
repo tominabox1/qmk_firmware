@@ -1,0 +1,5 @@
+#undef ENCODER_RESOLUTION
+#define ENCODER_RESOLUTION 2
+
+#define RGB_DI_PIN F0
+#define RGBLED_NUM 4
