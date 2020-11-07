@@ -21,9 +21,9 @@
 #include "quantum.h"
 #include <stdint.h>
 
-#ifdef EXTRA_EXTRA_LONG_COMBOS
+#if defined(EXTRA_EXTRA_LONG_COMBOS)
 #    define MAX_COMBO_LENGTH 32
-#elif EXTRA_LONG_COMBOS
+#elif defined(EXTRA_LONG_COMBOS)
 #    define MAX_COMBO_LENGTH 16
 #else
 #    define MAX_COMBO_LENGTH 8
@@ -34,9 +34,9 @@ typedef struct {
     uint16_t        keycode;
     bool            disabled : 1;
     bool            active : 1;
-#ifdef EXTRA_EXTRA_LONG_COMBOS
+#if defined(EXTRA_EXTRA_LONG_COMBOS)
     uint32_t state;
-#elif EXTRA_LONG_COMBOS
+#elif defined(EXTRA_LONG_COMBOS)
     uint16_t state;
 #else
     uint8_t state;
@@ -60,7 +60,7 @@ typedef struct {
 #endif
 
 /* check if keycode is only modifiers */
-#define KEYCODE_IS_MOD(code) (IS_MOD(code) || ((code & 0xFF00) <= QK_MODS_MAX && !(code & 0xFF)))
+#define KEYCODE_IS_MOD(code) (IS_MOD(code) || ((code & 0xFF00) >= QK_MODS && (code & 0xFF00) <= QK_MODS_MAX && !(code & 0xFF)))
 
 bool process_combo(uint16_t keycode, keyrecord_t *record);
 void matrix_scan_combo(void);

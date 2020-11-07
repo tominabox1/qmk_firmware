@@ -20,12 +20,12 @@ enum combo_events {
 
 const uint16_t PROGMEM caps_combo[] = {LSFT_T(KC_T), RSFT_T(KC_N), COMBO_END};
 const uint16_t PROGMEM cret[] = {LT(_NUM_SYM,KC_B), LT(_NAV, KC_V), COMBO_END};
-// const uint16_t PROGMEM combo_pp[] = {KC_7, KC_9, COMBO_END};
-const uint16_t PROGMEM combo_pp[] = {LT(_NUM_SYM, KC_SPC), KC_L, KC_Y, COMBO_END};
-// const uint16_t PROGMEM combo_next[] = {KC_8, KC_9, COMBO_END};
-const uint16_t PROGMEM combo_next[] = {LT(_NUM_SYM, KC_SPC), KC_U, KC_Y, COMBO_END};
-// const uint16_t PROGMEM combo_prev[] = {KC_7, KC_8, COMBO_END};
-const uint16_t PROGMEM combo_prev[] = {LT(_NUM_SYM, KC_SPC), KC_U, KC_L, COMBO_END};
+const uint16_t PROGMEM combo_pp[] = {KC_7, KC_9, COMBO_END};
+// const uint16_t PROGMEM combo_pp[] = {LT(_NUM_SYM, KC_SPC), KC_L, KC_Y, COMBO_END};
+const uint16_t PROGMEM combo_next[] = {KC_8, KC_9, COMBO_END};
+// const uint16_t PROGMEM combo_next[] = {LT(_NUM_SYM, KC_SPC), KC_U, KC_Y, COMBO_END};
+const uint16_t PROGMEM combo_prev[] = {KC_7, KC_8, COMBO_END};
+// const uint16_t PROGMEM combo_prev[] = {LT(_NUM_SYM, KC_SPC), KC_U, KC_L, COMBO_END};
 const uint16_t PROGMEM combo_bspc[] = {KC_Y, KC_QUOT, COMBO_END};
 const uint16_t PROGMEM combo_numbak[] = {KC_0, KC_9, COMBO_END};
 const uint16_t PROGMEM combo_tab[] = {LCTL_T(KC_S), LALT_T(KC_R), COMBO_END};
