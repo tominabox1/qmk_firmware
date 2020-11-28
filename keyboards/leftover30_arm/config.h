@@ -107,12 +107,27 @@
  * WS2812 Underglow Matrix options
  */
 #define RGB_DI_PIN B15
-#define RGBLED_NUM 6 // Change to 8 if utilizing the space bar LEDs
+#define RGBLED_NUM 8 // Change to 8 if utilizing the space bar LEDs
+#define RGBLIGHT_LED_MAP { 0, 1,  3, 4, 5, 6, 2, 7 }
+
 #define DRIVER_LED_TOTAL RGBLED_NUM
 
-#define WS2812_PWM_DRIVER PWMD1
-#define WS2812_PWM_CHANNEL 1
-#define WS2812_PWM_PAL_MODE 2
-#define WS2812_DMA_STREAM STM32_DMA1_STREAM2
-#define WS2812_DMA_CHANNEL 2
-#define WS2812_DMAMUX_ID STM32_DMAMUX1_TIM2_UP
+#define WS2812_SPI SPID2 // default: SPID1
+#define WS2812_SPI_MOSI_PAL_MODE 0 // Pin "alternate func
+#define WS2812_EXTERNAL_PULLUP
+#define RGBLIGHT_ANIMATIONS
+
+#ifdef RGB_MATRIX_ENABLE
+#   define RGB_MATRIX_KEYPRESSES // reacts to keypresses
+// #   define RGB_MATRIX_KEYRELEASES // reacts to keyreleases (instead of keypresses)
+// #   define RGB_DISABLE_AFTER_TIMEOUT 0 // number of ticks to wait until disabling effects
+#   define RGB_DISABLE_WHEN_USB_SUSPENDED true // turn off effects when suspended
+#   define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+// #   define RGB_MATRIX_LED_PROCESS_LIMIT (DRIVER_LED_TOTAL + 4) / 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
+// #   define RGB_MATRIX_LED_FLUSH_LIMIT 16 // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
+#    define RGB_MATRIX_HUE_STEP 8
+#    define RGB_MATRIX_SAT_STEP 8
+#    define RGB_MATRIX_VAL_STEP 8
+#    define RGB_MATRIX_SPD_STEP 10
+#endif
