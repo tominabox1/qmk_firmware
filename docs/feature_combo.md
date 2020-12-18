@@ -269,7 +269,7 @@ In addition to the keycodes, there are a few functions that you can use to set t
 # Dictionary Management
 
 Having 3 places to update when adding new combos or altering old ones does become cumbersome when you have a lot of combos. We can alleviate this with some magic! ... If you consider C macros magic.
-First, you need to add `VPATH += keyboards/gboards` to your `rules.mk`. Next, include the file `keymap_combo.h` in your `keymap.c`.
+First, you need to add `VPATH += keyboards/gboards` to your `rules.mk`. Next, include the file `g/keymap_combo.h` in your `keymap.c`.
 
 Then, write your combos in `combos.def` file in the following manner:
 
