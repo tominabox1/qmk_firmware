@@ -31,7 +31,7 @@
 
 #ifdef BACKLIGHT_ENABLE
 #    ifdef LED_MATRIX_ENABLE
-#        include "ledmatrix.h"
+#        include "led_matrix.h"
 #    else
 #        include "backlight.h"
 #    endif
@@ -218,7 +218,7 @@ typedef ioline_t pin_t;
 
 #    define writePinHigh(pin) palSetLine(pin)
 #    define writePinLow(pin) palClearLine(pin)
-#    define writePin(pin, level) ((level) ? writePinHigh(pin) : writePinLow(pin))
+#    define writePin(pin, level) ((level) ? (writePinHigh(pin)) : (writePinLow(pin)))
 
 #    define readPin(pin) palReadLine(pin)
 

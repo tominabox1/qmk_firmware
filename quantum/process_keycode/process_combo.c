@@ -33,6 +33,10 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
 __attribute__((weak)) bool get_combo_must_hold(uint16_t index, combo_t *combo) { return false; }
 #endif
 
+#ifdef COMBO_MUST_TAP_PER_COMBO
+__attribute__((weak)) bool get_combo_must_tap(uint16_t index, combo_t *combo) { return false; }
+#endif
+
 #ifdef COMBO_TERM_PER_COMBO
 __attribute__((weak)) uint16_t get_combo_term(uint16_t index, combo_t *combo) { return COMBO_TERM; }
 #endif
@@ -52,18 +56,17 @@ typedef struct {
     uint16_t combo_index;
     uint16_t keycode;
 } queued_record_t;
-static uint8_t key_buffer_write = 0;
-static uint8_t key_buffer_read = 0;
-static queued_record_t key_buffer[MAX_COMBO_LENGTH];
+static uint8_t key_buffer_size = 0;
+static queued_record_t key_buffer[COMBO_KEY_BUFFER_LENGTH];
 
 typedef struct {
     uint16_t combo_index;
 } queued_combo_t;
 static uint8_t combo_buffer_write= 0;
 static uint8_t combo_buffer_read = 0;
-static queued_combo_t combo_buffer[MAX_COMBO_LENGTH];
+static queued_combo_t combo_buffer[COMBO_BUFFER_LENGTH];
 
-#define INCREMENT_MOD(i) i = (i + 1) % MAX_COMBO_LENGTH
+#define INCREMENT_MOD(i) i = (i + 1) % COMBO_BUFFER_LENGTH
 
 #define COMBO_KEY_POS ((keypos_t){.col=254, .row=254})
 
@@ -94,19 +97,30 @@ static inline bool _get_combo_must_hold(uint16_t combo_index, combo_t *combo) {
 #elif defined(COMBO_MUST_HOLD_PER_COMBO)
     return get_combo_must_hold(combo_index, combo);
 #elif defined(COMBO_MUST_HOLD_MODS)
-    return KEYCODE_IS_MOD(combo->keycode);
+    return (KEYCODE_IS_MOD(combo->keycode) ||
+            (combo->keycode >= QK_MOMENTARY && combo->keycode <= QK_MOMENTARY_MAX));
 #endif
     return false;
+}
+
+static inline uint16_t _get_wait_time(uint16_t combo_index, combo_t *combo ) {
+    if (_get_combo_must_hold(combo_index, combo)
+#ifdef COMBO_MUST_TAP_PER_COMBO
+            || get_combo_must_tap(combo_index, combo)
+#endif
+       ) {
+        if (longest_term < COMBO_HOLD_TERM) {
+            return COMBO_HOLD_TERM;
+        }
+    }
+
+    return longest_term;
 }
 
 static inline uint16_t _get_combo_term(uint16_t combo_index, combo_t *combo) {
 
 #if defined(COMBO_TERM_PER_COMBO)
         return get_combo_term(combo_index, combo);
-#else
-        if (_get_combo_must_hold(combo_index, combo)) {
-            return COMBO_MOD_TERM;
-        }
 #endif
 
     return COMBO_TERM;
@@ -125,14 +139,11 @@ void clear_combos(void) {
 }
 
 static inline void dump_key_buffer(void) {
-    if (key_buffer_read == key_buffer_write) {
+    if (key_buffer_size == 0) {
         return;
     }
 
-    for (uint8_t key_buffer_i = key_buffer_read;
-            key_buffer_i != key_buffer_write;
-            INCREMENT_MOD(key_buffer_i)
-        ) {
+    for (uint8_t key_buffer_i = 0; key_buffer_i < key_buffer_size; key_buffer_i++) {
 
         queued_record_t *qrecord = &key_buffer[key_buffer_i];
         keyrecord_t *record = &qrecord->record;
@@ -153,7 +164,7 @@ static inline void dump_key_buffer(void) {
         record->event.time = 0;
     }
 
-    key_buffer_read = key_buffer_write;
+    key_buffer_size = 0;
 }
 
 #define NO_COMBO_KEYS_ARE_DOWN (0 == combo->state)
@@ -202,6 +213,8 @@ void apply_combo(uint16_t combo_index, combo_t *combo) {
     /* Apply combo's result keycode to the last chord key of the combo and
      * disable the other keys. */
 
+    if (combo->disabled) { return; }
+
     // state to check against so we find the last key of the combo from the buffer
 #if defined(EXTRA_EXTRA_LONG_COMBOS)
     uint32_t state = 0;
@@ -211,19 +224,11 @@ void apply_combo(uint16_t combo_index, combo_t *combo) {
     uint8_t state = 0;
 #endif
 
-    for (uint8_t key_buffer_i = key_buffer_read;
-            key_buffer_i != key_buffer_write;
-            INCREMENT_MOD(key_buffer_i)
-        ) {
+    for (uint8_t key_buffer_i = 0; key_buffer_i < key_buffer_size; key_buffer_i++) {
 
         queued_record_t *qrecord = &key_buffer[key_buffer_i];
         keyrecord_t *record = &qrecord->record;
         uint16_t keycode = qrecord->keycode;
-
-        combo_t *combo = &key_combos[combo_index];
-        if (combo->disabled) {
-            continue;
-        }
 
         uint8_t key_count = 0;
         uint16_t key_index = -1;
@@ -254,7 +259,8 @@ void apply_combo(uint16_t combo_index, combo_t *combo) {
     drop_combo_from_buffer(combo_index);
 }
 
-void apply_combos(void) {
+static inline void apply_combos(void) {
+    // Apply all buffered normal combos.
     for (uint8_t i = combo_buffer_read;
             i != combo_buffer_write;
             INCREMENT_MOD(i)) {
@@ -262,6 +268,13 @@ void apply_combos(void) {
         queued_combo_t *buffered_combo = &combo_buffer[i];
         combo_t *combo = &key_combos[buffered_combo->combo_index];
 
+#ifdef COMBO_MUST_TAP_PER_COMBO
+        if (get_combo_must_tap(buffered_combo->combo_index, combo)) {
+            // Tap-only combos are applied on key release only, so let's drop 'em here.
+            drop_combo_from_buffer(buffered_combo->combo_index);
+            continue;
+        }
+#endif
         apply_combo(buffered_combo->combo_index, combo);
     }
     dump_key_buffer();
@@ -354,6 +367,9 @@ static bool process_single_combo(combo_t *combo, uint16_t keycode, keyrecord_t *
                         .combo_index=combo_index,
                     };
                     INCREMENT_MOD(combo_buffer_write);
+
+                    // get possible longer waiting time for tap-/hold-only combos.
+                    longest_term = _get_wait_time(combo_index, combo);
                 }
             } // if timer elapsed end
 
@@ -367,6 +383,12 @@ static bool process_single_combo(combo_t *combo, uint16_t keycode, keyrecord_t *
                 drop_combo_from_buffer(combo_index);
                 key_is_part_of_combo = false;
             }
+#ifdef COMBO_MUST_TAP_PER_COMBO
+            else if (get_combo_must_tap(combo_index, combo)) {
+                // immediately apply tap-only combo
+                apply_combo(combo_index, combo);
+            }
+#endif
         } else if (combo->active
                 && ONLY_ONE_KEY_IS_DOWN(combo->state)
                 && KEY_NOT_YET_RELEASED(combo->state, key_index)
@@ -441,12 +463,13 @@ bool process_combo(uint16_t keycode, keyrecord_t *record) {
 #   endif
 #endif
 
-        key_buffer[key_buffer_write] = (queued_record_t){
-            .record = *record,
-            .keycode = keycode,
-            .combo_index = -1, // this will be set when applying combos
-        };
-        INCREMENT_MOD(key_buffer_write);
+        if (key_buffer_size < COMBO_KEY_BUFFER_LENGTH) {
+            key_buffer[key_buffer_size++] = (queued_record_t){
+                .record = *record,
+                .keycode = keycode,
+                .combo_index = -1, // this will be set when applying combos
+            };
+        }
     } else {
         if (combo_buffer_read != combo_buffer_write) {
             // some combo is prepared
