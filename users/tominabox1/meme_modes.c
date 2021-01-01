@@ -61,20 +61,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       aesthetic_mode ^= 1;
     }
 
-<<<<<<< HEAD
     case (KC_COMM):
-=======
-    case KC_SLSH:
->>>>>>> leftover30_arm
     if (record->event.pressed) {
       mod_state = get_mods();                                 // save mod state for comparison and later restoration
       if ((mod_state & MOD_MASK_CTRL) && (mod_state & MOD_MASK_SHIFT)) {                         // if either ctrl is held
         unregister_mods(MOD_BIT(KC_LCTRL) | MOD_BIT(KC_RCTRL) | MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSFT)); // unregister both ctrl
-<<<<<<< HEAD
         tap_code16(KC_SCLN);                                    // send ":" unmolested
-=======
-        tap_code(KC_SCLN);                                    // send ":" unmolested
->>>>>>> leftover30_arm
         set_mods(mod_state);                                  // restore mod state
         return false;                                         // done processing
       }
@@ -87,11 +79,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
 
       else {                                                  // else, if ctrl isn't held
-<<<<<<< HEAD
       tap_code16(KC_COMM);                                    // send "/"
-=======
-      tap_code(KC_SLSH);                                    // send "/"
->>>>>>> leftover30_arm
       return false;                                         // done processing
     }
   }

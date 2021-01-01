@@ -59,11 +59,8 @@ __attribute__((weak)) bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrec
 __attribute__((weak)) bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) { return false; }
 #endif
 
-<<<<<<< HEAD
 __attribute__((weak)) bool pre_process_record_quantum(keyrecord_t *record) { return true; }
 
-=======
->>>>>>> master
 #ifndef TAP_CODE_DELAY
 #    define TAP_CODE_DELAY 0
 #endif
