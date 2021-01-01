@@ -293,11 +293,10 @@ ifneq ("$(wildcard $(KEYBOARD_PATH_5)/post_config.h)","")
     POST_CONFIG_H += $(KEYBOARD_PATH_5)/post_config.h
 endif
 
-# Userspace setup and definitions
-ifeq ("$(USER_NAME)","")
-    USER_NAME := $(KEYMAP)
-endif
-USER_PATH := users/$(USER_NAME)
+# Save the defines and includes here, so we don't include any keymap specific ones
+PROJECT_DEFS := $(OPT_DEFS)
+PROJECT_INC := $(VPATH) $(EXTRAINCDIRS) $(KEYBOARD_PATHS)
+PROJECT_CONFIG := $(CONFIG_H)
 
 # Include the userspace rules.mk file
 -include $(USER_PATH)/rules.mk

@@ -63,7 +63,6 @@ uint32_t layer_state_set_keymap(uint32_t state){
     led1b = 25;
     led1r = 25;
   }
-
   setrgb(led0r, led0g, led0b, (LED_TYPE *)&led[0]);
   setrgb(led1r, led1g, led1b, (LED_TYPE *)&led[1]);
   rgblight_set();
