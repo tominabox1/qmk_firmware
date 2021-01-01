@@ -40,9 +40,13 @@ static inline void setPinOutput_writeLow(pin_t pin) {
 }
 
 static inline void setPinInputHigh_atomic(pin_t pin) {
+<<<<<<< HEAD
     ATOMIC_BLOCK_FORCEON {
         setPinInputHigh(pin);
     }
+=======
+    ATOMIC_BLOCK_FORCEON { setPinInputHigh(pin); }
+>>>>>>> master
 }
 
 // matrix code
@@ -82,6 +86,7 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
 #elif defined(DIODE_DIRECTION)
 #    if (DIODE_DIRECTION == COL2ROW)
 
+<<<<<<< HEAD
 static void select_row(uint8_t row) {
     setPinOutput_writeLow(row_pins[row]);
 }
@@ -89,6 +94,11 @@ static void select_row(uint8_t row) {
 static void unselect_row(uint8_t row) {
     setPinInputHigh_atomic(row_pins[row]);
 }
+=======
+static void select_row(uint8_t row) { setPinOutput_writeLow(row_pins[row]); }
+
+static void unselect_row(uint8_t row) { setPinInputHigh_atomic(row_pins[row]); }
+>>>>>>> master
 
 static void unselect_rows(void) {
     for (uint8_t x = 0; x < MATRIX_ROWS; x++) {
@@ -133,6 +143,7 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
 
 #    elif (DIODE_DIRECTION == ROW2COL)
 
+<<<<<<< HEAD
 static void select_col(uint8_t col) {
     setPinOutput_writeLow(col_pins[col]);
 }
@@ -140,6 +151,11 @@ static void select_col(uint8_t col) {
 static void unselect_col(uint8_t col) {
     setPinInputHigh_atomic(col_pins[col]);
 }
+=======
+static void select_col(uint8_t col) { setPinOutput_writeLow(col_pins[col]); }
+
+static void unselect_col(uint8_t col) { setPinInputHigh_atomic(col_pins[col]); }
+>>>>>>> master
 
 static void unselect_cols(void) {
     for (uint8_t x = 0; x < MATRIX_COLS; x++) {

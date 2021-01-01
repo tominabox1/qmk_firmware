@@ -17,7 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #ifdef KEYBOARD_cozykeys_speedo_v2
+<<<<<<< HEAD
     #include "speedo_v2.h"
 #elif KEYBOARD_cozykeys_speedo_v3
     #include "speedo_v3.h"
+=======
+    #include "v2.h"
+#elif KEYBOARD_cozykeys_speedo_v3
+    #include "v3.h"
+>>>>>>> master
 #endif

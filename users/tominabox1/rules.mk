@@ -63,16 +63,11 @@ DYNAMIC_MACRO_ENABLE = yes
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), spaceman/2_milk)
-BOOTLOADER = halfkay
-TAP_DANCE_ENABLE = yes
-COMBO_ENABLE = yes
-RGBLIGHT_ENABLE = yes
-NKRO_ENABLE = no
-LED_ANIMATIONS = yes
-MOUSEKEY_ENABLE = yes
-LED_ANIMATIONS = yes
-SRC += tominabox1.c
+ifeq ($(strip $(KEYBOARD)), lazydesigners/dimple)
+MOUSEKEY_ENABLE = no        # Mouse keys
+EXTRAKEY_ENABLE = yes        # Audio control and System control
+BACKLIGHT_ENABLE = yes       # Enable keyboard backlight functionality on B7 by default
+RGBLIGHT_ENABLE = yes        # Enable keyboard RGB underglow
 endif
 
 ifeq ($(strip $(KEYBOARD)), alpha)
