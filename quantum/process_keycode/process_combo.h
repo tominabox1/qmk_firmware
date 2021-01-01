@@ -28,6 +28,13 @@
 #    define MAX_COMBO_LENGTH 8
 #endif
 
+#ifndef COMBO_KEY_BUFFER_LENGTH
+#    define COMBO_KEY_BUFFER_LENGTH MAX_COMBO_LENGTH
+#endif
+#ifndef COMBO_BUFFER_LENGTH
+#    define COMBO_BUFFER_LENGTH 4
+#endif
+
 typedef struct {
     const uint16_t *keys;
     uint16_t        keycode;
@@ -48,18 +55,18 @@ typedef struct {
     { .keys = &(ck)[0] }
 
 #define COMBO_END 0
-#ifndef COMBO_COUNT
-#    define COMBO_COUNT 0
-#endif
 #ifndef COMBO_TERM
 #    define COMBO_TERM 50
+#endif
+#ifndef COMBO_HOLD_TERM
+#    define COMBO_HOLD_TERM TAPPING_TERM
 #endif
 #ifndef COMBO_MOD_TERM
 #    define COMBO_MOD_TERM 200
 #endif
 
 /* check if keycode is only modifiers */
-#define KEYCODE_IS_MOD(code) (IS_MOD(code) || ((code & 0xFF00) >= QK_MODS && (code & 0xFF00) <= QK_MODS_MAX && !(code & 0xFF)))
+#define KEYCODE_IS_MOD(code) (IS_MOD(code) || (code >= QK_MODS && code <= QK_MODS_MAX && !(code & QK_BASIC_MAX)))
 
 bool process_combo(uint16_t keycode, keyrecord_t *record);
 void matrix_scan_combo(void);

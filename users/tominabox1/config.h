@@ -9,9 +9,9 @@
 #define PERMISSIVE_HOLD_PER_KEY
 
 // Combos
-#undef COMBO_COUNT
-#define COMBO_COUNT
-#define COMBO_VARIABLE_LEN
+// #undef COMBO_COUNT
+// #define COMBO_COUNT
+// #define COMBO_VARIABLE_LEN
 #define COMBO_TERM 30
 #undef COMBO_TERM_PER_COMBO
 // #define COMBO_ALLOW_ACTION_KEYS
