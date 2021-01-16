@@ -71,6 +71,9 @@ else ifneq ("$(wildcard $(TOP_DIR)/platforms/chibios/$(BOARD)/board/board.mk)","
     BOARD_PATH = $(TOP_DIR)/platforms/chibios/$(BOARD)
     BOARD_MK += $(TOP_DIR)/platforms/chibios/$(BOARD)/board/board.mk
     KEYBOARD_PATHS += $(BOARD_PATH)/configs
+    ifneq ("$(wildcard $(BOARD_PATH)/rules.mk)","")
+        include $(BOARD_PATH)/rules.mk
+    endif
 endif
 
 ifeq ("$(wildcard $(BOARD_MK))","")
@@ -207,7 +210,7 @@ CHIBISRC = $(STARTUPSRC) \
        $(CHIBIOS)/os/various/syscalls.c
 
 # Ensure the ASM files are not subjected to LTO -- it'll strip out interrupt handlers otherwise.
-QUANTUM_LIB_SRC += $(STARTUPASM) $(PORTASM) $(OSALASM)
+QUANTUM_LIB_SRC += $(STARTUPASM) $(PORTASM) $(OSALASM) $(PLATFORMASM)
 
 CHIBISRC := $(patsubst $(TOP_DIR)/%,%,$(CHIBISRC))
 

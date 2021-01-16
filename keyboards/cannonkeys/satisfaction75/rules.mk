@@ -19,11 +19,14 @@ SLEEP_LED_ENABLE = yes  # Breathing sleep LED during USB suspend
 NKRO_ENABLE = yes	    # USB Nkey Rollover
 CUSTOM_MATRIX = no # Custom matrix file
 ENCODER_ENABLE = yes
-QWIIC_ENABLE += MICRO_OLED
+QWIIC_ENABLE = yes
+QWIIC_DRIVERS += MICRO_OLED
 #BACKLIGHT_ENABLE = yes
 
 DEFAULT_FOLDER = cannonkeys/satisfaction75/rev1
 
+# Wildcard to allow APM32 MCU
+DFU_SUFFIX_ARGS = -p FFFF -v FFFF
 
 # Enter lower-power sleep mode when on the ChibiOS idle thread
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE

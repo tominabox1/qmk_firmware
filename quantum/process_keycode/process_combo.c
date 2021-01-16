@@ -445,6 +445,11 @@ bool process_combo(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
 
+#ifdef COMBO_ONLY_FROM_LAYER
+    /* Only check keycodes from one layer. */
+    keycode = keymap_key_to_keycode(COMBO_ONLY_FROM_LAYER, record->event.key);
+#endif
+
     for (uint16_t idx = 0; idx < COMBO_LEN; ++idx) {
         combo_t *combo = &key_combos[idx];
         is_combo_key |= process_single_combo(combo, keycode, record, idx);
