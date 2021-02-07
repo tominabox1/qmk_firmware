@@ -1,6 +1,9 @@
 {
+<<<<<<< HEAD:keyboards/cmm_studio/saka68/solder/info.json
     "keyboard_name": "CMM.Studio Saka68",
     "url": "",
+=======
+>>>>>>> early_combo:keyboards/cmm_studio/saka68/info.json
     "maintainer": "qmk",
     "width": 17.25,
     "height": 5,

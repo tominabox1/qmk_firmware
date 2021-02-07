@@ -38,8 +38,8 @@
 typedef struct {
     const uint16_t *keys;
     uint16_t        keycode;
-    bool            disabled : 1;
-    bool            active : 1;
+    bool            disabled;
+    bool            active;
 #if defined(EXTRA_EXTRA_LONG_COMBOS)
     uint32_t state;
 #elif defined(EXTRA_LONG_COMBOS)
@@ -64,6 +64,9 @@ typedef struct {
 #ifndef COMBO_MOD_TERM
 #    define COMBO_MOD_TERM 200
 #endif
+
+/* check if keycode is only modifiers */
+#define KEYCODE_IS_MOD(code) (IS_MOD(code) || (code >= QK_MODS && code <= QK_MODS_MAX && !(code & QK_BASIC_MAX)))
 
 /* check if keycode is only modifiers */
 #define KEYCODE_IS_MOD(code) (IS_MOD(code) || (code >= QK_MODS && code <= QK_MODS_MAX && !(code & QK_BASIC_MAX)))

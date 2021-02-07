@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef KEYBOARD_cozykeys_speedo_v2
 <<<<<<< HEAD
+<<<<<<< HEAD
     #include "speedo_v2.h"
 #elif KEYBOARD_cozykeys_speedo_v3
     #include "speedo_v3.h"
@@ -26,4 +27,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #elif KEYBOARD_cozykeys_speedo_v3
     #include "v3.h"
 >>>>>>> master
+=======
+    #include "v2.h"
+#elif KEYBOARD_cozykeys_speedo_v3
+    #include "v3.h"
+>>>>>>> early_combo
 #endif

@@ -19,19 +19,13 @@
 
 #include "config_common.h"
 
-/* USB Device descriptor parameter */
-#define VENDOR_ID       0xC1ED
-#define PRODUCT_ID      0x2350
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    Clueboard
-#define PRODUCT         Clueboard 60%
-
 /* Address for jumping to bootloader on STM32 chips. */
 /* It is chip dependent, the correct number can be looked up here:
  * http://www.st.com/web/en/resource/technical/document/application_note/CD00167594.pdf
  */
 #define STM32_BOOTLOADER_ADDRESS 0x1FFFD800
 
+<<<<<<< HEAD
 /* key matrix size */
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 15
@@ -119,6 +113,8 @@
 
 #define LED_CAPS_LOCK_PIN B7
 
+=======
+>>>>>>> early_combo
 /* Backlight configuration
  */
 #define BACKLIGHT_LEVELS 1

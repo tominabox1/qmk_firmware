@@ -22,3 +22,13 @@ TIME_FORMAT = '%H:%M:%S'
 # Constants that should match their counterparts in make
 BUILD_DIR = environ.get('BUILD_DIR', '.build')
 KEYBOARD_OUTPUT_PREFIX = f'{BUILD_DIR}/obj_'
+# Used when generating matrix locations
+COL_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijilmnopqrstuvwxyz'
+ROW_LETTERS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnop'
+
+# Mapping between info.json and config.h keys
+LED_INDICATORS = {
+    'caps_lock': 'LED_CAPS_LOCK_PIN',
+    'num_lock': 'LED_NUM_LOCK_PIN',
+    'scrol_lock': 'LED_SCROLL_LOCK_PIN',
+}

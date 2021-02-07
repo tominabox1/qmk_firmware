@@ -83,7 +83,7 @@ static inline void release_combo(uint16_t combo_index, combo_t *combo) {
 #ifndef NO_ACTION_TAPPING
         action_tapping_process(record);
 #else
-        process_record(record);
+        process_record(&record);
 #endif
     } else {
         process_combo_event(combo_index, false);
@@ -387,6 +387,12 @@ static bool process_single_combo(combo_t *combo, uint16_t keycode, keyrecord_t *
             else if (get_combo_must_tap(combo_index, combo)) {
                 // immediately apply tap-only combo
                 apply_combo(combo_index, combo);
+                apply_combos(); // also apply other prepared combos and dump key buffer
+#    ifdef COMBO_PROCESS_KEY_RELEASE
+                if (process_combo_key_release(combo_index, combo, key_index, keycode)) {
+                    release_combo(combo_index, combo);
+                }
+#    endif
             }
 #endif
         } else if (combo->active
@@ -444,6 +450,11 @@ bool process_combo(uint16_t keycode, keyrecord_t *record) {
     if (!is_combo_enabled()) {
         return true;
     }
+
+#ifdef COMBO_ONLY_FROM_LAYER
+    /* Only check keycodes from one layer. */
+    keycode = keymap_key_to_keycode(COMBO_ONLY_FROM_LAYER, record->event.key);
+#endif
 
     for (uint16_t idx = 0; idx < COMBO_LEN; ++idx) {
         combo_t *combo = &key_combos[idx];
