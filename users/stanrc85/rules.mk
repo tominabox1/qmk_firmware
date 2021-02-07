@@ -20,7 +20,7 @@ ifeq ($(strip $(KEYBOARD)), projectkb/alice/rev2)
 endif
 ifeq ($(strip $(KEYBOARD)), sneakbox/aliceclone)
   SRC += indicator_layers_sneakbox.c
-  #SRC += startup_fanfare.c
+  SRC += startup_fanfare.c
   OPT_DEFS += -DHAS_INDICATORS
   OPT_DEFS += -DHAS_ROTARY
   VIA_ENABLE = yes
@@ -31,4 +31,8 @@ ifeq ($(strip $(KEYBOARD)), tkc/osav2)
   VIA_ENABLE = yes
   LTO_ENABLE = no
   VELOCIKEY_ENABLE=yes
+endif
+ifeq ($(strip $(KEYBOARD)), boardsource/the_mark)
+  RGB_MATRIX_ENABLE = yes
+  RGBLIGHT_ENABLE = no
 endif

@@ -301,6 +301,9 @@ PROJECT_CONFIG := $(CONFIG_H)
 # Include the userspace rules.mk file
 -include $(USER_PATH)/rules.mk
 
+# Disable features that a keyboard doesn't support
+-include disable_features.mk
+
 # Object files directory
 #     To put object files in current directory, use a dot (.), do NOT make
 #     this an empty or blank macro!
