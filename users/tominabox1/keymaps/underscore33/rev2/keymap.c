@@ -7,7 +7,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_Q, KC_W, KC_F, KC_P, KC_G, KC_J, KC_L, KC_U, KC_Y, KC_QUOT,
 	_______________HOMEROW_MOD_________________,
 	_______________COLEMAK3____________________,
-    DM_REC1, DM_PLY1, KC_NAV_ENT, KC_NUM_SPC, KC_NAV_ENT, RGUI(RSFT(RCTL(KC_4)))
+    DM_REC1, KC_NAV_ENT, KC_NUM_SPC, KC_NO,KC_NAV_ENT, RGUI(RSFT(RCTL(KC_4)))
   ),
 
   [_NUM_SYM] = LAYOUT_33_split_spacewrap(
