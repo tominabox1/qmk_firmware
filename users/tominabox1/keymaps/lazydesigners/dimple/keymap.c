@@ -4,8 +4,8 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[_BASE] = LAYOUT_wrapper(
-    KC_ESC, _______________COLEMAK1____________________, KC_BSPC,
-    KC_CTLTB,  _______________HOMEROW_MOD_________________, KC_QUOT,
+    KC_ESC, KC_Q, KC_W, KC_F, KC_P, KC_G, KC_J, KC_L, KC_U, KC_Y, KC_QUOTE, KC_BSPC,
+    KC_CTLTB,  _______________HOMEROW_MOD_________________, KC_ENT,
     KC_LSFT,   _______________COLEMAK3____________________,
     DYN_REC_START1, DYN_REC_STOP, DYN_MACRO_PLAY1, KC_NAV_ENT,  KC_NUM_SPC,  KC_NAV_ENT, MO(_FKEY), KC_NO
 	),
