@@ -4,7 +4,7 @@
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID 0x7431
-#define PRODUCT_ID 0x0001
+#define PRODUCT_ID 0x6164
 #define DEVICE_VER 0x0001
 #define MANUFACTURER tominabox1
 #define PRODUCT Adalyn
@@ -23,8 +23,8 @@
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
  */
-#define MATRIX_ROW_PINS { F5, F6, D0, D4 }
-#define MATRIX_COL_PINS { B5, B4, E6, D1, C6, F7, B1, B3, B2, B6 }
+#define MATRIX_ROW_PINS { C7, D6, B7, B3 }
+#define MATRIX_COL_PINS { D7, B4, B5, B6, C6, F7, F6, F5, F4, F1 }
 #define UNUSED_PINS
 
 /* COL2ROW, ROW2COL*/
