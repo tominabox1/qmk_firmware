@@ -1,6 +1,6 @@
 // Combos
 enum combo_events {
-  CAPS_COMBO,
+  // CAPS_COMBO,
   CRET,
   COMBOPP,
   COMBO_NEXT,
@@ -14,7 +14,7 @@ enum combo_events {
   COMBO_QUES,
 };
 
-const uint16_t PROGMEM caps_combo[] = {LSFT_T(KC_T), RSFT_T(KC_N), COMBO_END};
+// const uint16_t PROGMEM caps_combo[] = {LSFT_T(KC_T), RSFT_T(KC_N), COMBO_END};
 const uint16_t PROGMEM cret[] = {RCTL_T(KC_E), RALT_T(KC_I), COMBO_END};
 const uint16_t PROGMEM combo_pp[] = {KC_7, KC_9, COMBO_END};
 // const uint16_t PROGMEM combo_pp[] = {LT(_NUM_SYM, KC_SPC), KC_L, KC_Y, COMBO_END};
@@ -35,7 +35,7 @@ const uint16_t PROGMEM combo_ques[] = {KC_COMM, KC_DOT, COMBO_END};
 //const uint16_t PROGMEM combo_space[] = {RCTL_T(KC_E),RALT_T(KC_I), COMBO_END};
 
 combo_t key_combos[] = {
-  [CAPS_COMBO] = COMBO(caps_combo, KC_CAPS),
+//  [CAPS_COMBO] = COMBO(caps_combo, KC_CAPS),
   [CRET] = COMBO(cret, KC_ENT),
   [COMBOPP] = COMBO(combo_pp, KC_MPLY),
   [COMBO_NEXT] = COMBO(combo_next,KC_MNXT),

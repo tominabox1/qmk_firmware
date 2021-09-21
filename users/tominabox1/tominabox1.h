@@ -29,7 +29,8 @@ enum {
     TD_AMP_RP,
     TD_QUESDOT,
     TD_RESET,
-    TD_SLS_ENT
+    TD_SLS_ENT,
+    TD_DCAP
     };
 
 /* Tapdnce keycodes */
@@ -46,6 +47,7 @@ enum {
 #define KC_DQOT   TD(TD_QUOTE) // Single tap quote, double tap double quote
 #define KC_QCOL   TD(TD_QCOL) // Single tap quote, double tap semicolon
 #define KC_WTAB   TD(TD_WTAB) // Single tap w, double tap tab
+#define KC_DCAP   TD(TD_DCAP) // Tap d, hold caps
 
 /* Basic mod-taps */
 #define KC_CTLTB CTL_T(KC_TAB) // Tab on tap, ctrl on hold
