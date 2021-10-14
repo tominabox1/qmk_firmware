@@ -62,7 +62,7 @@ void encoder_update_keymap(uint8_t index, bool clockwise) {
         } else if (IS_LAYER_ON(_NAV)) {
           tap_code16((clockwise == true) ? S(KC_DOWN) : S(KC_UP));
         } else {
-          tap_code16((clockwise == true) ? KC_MFFD : KC_MRWD);
+          tap_code16((clockwise == true) ? KC_MNXT : KC_MPRV);
         }
 
     }
@@ -72,7 +72,7 @@ void encoder_update_keymap(uint8_t index, bool clockwise) {
         } else if (IS_LAYER_ON(_NAV)) {
           tap_code16((clockwise == true) ? S(KC_DOWN) : S(KC_UP));
         } else {
-          tap_code16((clockwise == true) ? KC_MFFD : KC_MRWD);
+          tap_code16((clockwise == true) ? KC_MNXT : KC_MPRV);
         }
 }
 }
