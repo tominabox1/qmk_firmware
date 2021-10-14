@@ -50,11 +50,20 @@ static const char PROGMEM code_to_name[0xFF] = {
 };
 // clang-format on
 
-void add_keylog(uint16_t keycode) {
+void add_keylog(uint16_t keycode, keyrecord_t *record) {
     if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) || (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX) || (keycode >= QK_MODS && keycode <= QK_MODS_MAX)) {
-        keycode = keycode & 0xFF;
-    } else if (keycode > 0xFF) {
-        keycode = 0;
+        if (((keycode & 0xFF) == KC_BSPC) && mod_config(get_mods() | get_oneshot_mods()) & MOD_MASK_CTRL) {
+            memset(keylog_str, ' ', sizeof(keylog_str) - 1);
+            return;
+        }
+        if (record->tap.count) {
+            keycode = keycode & 0xFF;
+        } else if (keycode > 0xFF) {
+            return;
+        }
+    }
+    if (keycode > 0xFF) {
+        return;
     }
 
     for (uint8_t i = 1; i < KEYLOGGER_LENGTH; i++) {
@@ -72,7 +81,7 @@ bool process_record_user_oled(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
 #ifdef OLED_ENABLE
         oled_timer = timer_read32();
-        add_keylog(keycode);
+        add_keylog(keycode, record);
 #endif
     }
     return true;
@@ -244,6 +253,17 @@ extern bool tap_toggling;
 #endif
 
 void render_user_status(void) {
+#ifdef AUDIO_ENABLE
+    bool is_audio_on = false, is_clicky_on = false;
+#    ifdef SPLIT_KEYBOARD
+
+    is_audio_on  = user_state.audio_enable;
+    is_clicky_on = user_state.audio_clicky_enable;
+#    else
+    is_audio_on  = is_audio_on();
+    is_clicky_on = is_clicky_on();
+#    endif
+#endif
     oled_write_P(PSTR(OLED_RENDER_USER_NAME), false);
 #if !defined(OLED_DISPLAY_128X64)
     oled_write_P(PSTR(" "), false);
@@ -259,11 +279,11 @@ void render_user_status(void) {
 #endif
 #ifdef AUDIO_ENABLE
     static const char PROGMEM audio_status[2][3] = {{0xE0, 0xE1, 0}, {0xE2, 0xE3, 0}};
-    oled_write_P(audio_status[is_audio_on()], false);
+    oled_write_P(audio_status[is_audio_on], false);
 
 #    ifdef AUDIO_CLICKY
     static const char PROGMEM audio_clicky_status[2][3] = {{0xF4, 0xF5, 0}, {0xF6, 0xF7, 0}};
-    oled_write_P(audio_clicky_status[is_clicky_on() && is_audio_on()], false);
+    oled_write_P(audio_clicky_status[is_clicky_on && is_audio_on], false);
 #        if !defined(OLED_DISPLAY_128X64)
     oled_write_P(PSTR(" "), false);
 #        endif
@@ -364,7 +384,7 @@ void render_status_secondary(void) {
     /* Show Keyboard Layout  */
     render_layer_state();
     render_mod_status(get_mods() | get_oneshot_mods());
-#if !defined(OLED_DISPLAY_128X64) && defined(WPM_ENABLE)
+#if !defined(OLED_DISPLAY_128X64) && defined(WPM_ENABLE) && !defined(CONVERT_TO_PROTON_C)
     render_wpm(2);
 #endif
     // render_keylock_status(host_keyboard_leds());
@@ -384,9 +404,8 @@ void render_status_main(void) {
 __attribute__((weak)) oled_rotation_t oled_init_keymap(oled_rotation_t rotation) { return rotation; }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    for (uint8_t i = 0; i < (KEYLOGGER_LENGTH - 1); i++) {
-        add_keylog(0);
-    }
+    memset(keylog_str, ' ', sizeof(keylog_str) - 1);
+
     return oled_init_keymap(rotation);
 }
 

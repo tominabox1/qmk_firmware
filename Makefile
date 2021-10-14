@@ -336,6 +336,7 @@ define PARSE_KEYBOARD
       KEYBOARD_LAYOUTS := $$(sort $$(LAYOUTS) $$(KEYBOARD_LAYOUTS))
     endif
 
+    KEYBOARD_LAYOUTS := $(shell $(QMK_BIN) list-layouts --keyboard $1)
     LAYOUT_KEYMAPS :=
     $$(foreach LAYOUT,$$(KEYBOARD_LAYOUTS),$$(eval LAYOUT_KEYMAPS += $$(notdir $$(patsubst %/.,%,$$(wildcard $(ROOT_DIR)/layouts/*/$$(LAYOUT)/*/.)))))
 
