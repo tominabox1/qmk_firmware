@@ -13,7 +13,7 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 #define LAYOUT_wrapper(...)                  LAYOUT(__VA_ARGS__)
 #define LAYOUT_arrow_wrapper(...) 	         LAYOUT_arrow_command(__VA_ARGS__)
 #define LAYOUT_catalyst(...)                 LAYOUT_arrow(__VA_ARGS__)
-#define LAYOUT_brutal_wrap(...)				       LAYOUT_brutal(__VA_ARGS__)
+#define LAYOUT_brutal_wrap(...)				 LAYOUT_brutal(__VA_ARGS__)
 #define LAYOUT_33_split_spacewrap(...)       LAYOUT_33_split_space(__VA_ARGS__)
 #define LAYOUT_qaz_wrap(...)                 LAYOUT_split_space(__VA_ARGS__)
 

@@ -64,11 +64,23 @@ DYNAMIC_MACRO_ENABLE = no
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), lazydesigners/dimple)
+ifeq ($(strip $(KEYBOARD)), lazydesigners/dimple/staggered/rev1)
 MOUSEKEY_ENABLE = no        # Mouse keys
 EXTRAKEY_ENABLE = yes        # Audio control and System control
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality on B7 by default
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
+TAP_DANCE_ENABLE = yes
+SRC += tominabox1.c
+endif
+
+ifeq ($(strip $(KEYBOARD)), lazydesigners/dimple/staggered/rev3)
+MOUSEKEY_ENABLE = no        # Mouse keys
+EXTRAKEY_ENABLE = yes        # Audio control and System control
+BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality on B7 by default
+RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
+TAP_DANCE_ENABLE = yes
+COMBO_ENABLE = yes
+SRC += tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), alpha)
