@@ -108,7 +108,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
   }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
 
   bool result = false;
   switch (keycode) {
@@ -135,7 +135,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return result;
 }
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+void encoder_update_keymap(uint8_t index, bool clockwise) {
     if (index == 0) { // Left encoder
         if (IS_LAYER_ON(_ADJUST)) {
           if (clockwise) {
@@ -170,7 +170,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 // for exsample customize of LED inducator
-bool led_update_user(led_t led_state) {
+bool led_update_keymap(led_t led_state) {
     writePin(B10, IS_LAYER_ON(_LOWER));
     writePin(B11, IS_LAYER_ON(_RAISE));
     return false;
