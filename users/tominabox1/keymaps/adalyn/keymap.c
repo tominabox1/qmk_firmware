@@ -7,7 +7,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
     KC_Q, KC_W, KC_F, KC_P, KC_G, KC_J, KC_L, KC_U, KC_Y, KC_QUOTE,
     LGUI_T(KC_A), LALT_T(KC_R), LCTL_T(KC_S), LSFT_T(KC_T), TD(TD_DCAP), KC_H, RSFT_T(KC_N), RCTL_T(KC_E), RALT_T(KC_I), RGUI_T(KC_O),
-    KC_Z, KC_X, KC_C, KC_V, KC_B, KC_B, KC_K, KC_M, KC_COMM, KC_DOT,
+    LT(_NAV, KC_Z), KC_X, KC_C, KC_V, KC_B, KC_B, KC_K, KC_M, KC_COMM, KC_DOT,
     DM_REC1, DM_PLY1, KC_NAV_ENT, KC_NUM_SPC, KC_NAV_ENT,KC_SLSH
   ),
 
@@ -25,12 +25,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RGB_MOD,KC_TRNS,KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_MPRV
   ),
 
-};
-
-void matrix_init_kb(void) {
-   DDRD &= ~(1<<5);
-   PORTD &= ~(1<<5);
-
-   DDRB &= ~(1<<0);
-   PORTB &= ~(1<<0);
 };

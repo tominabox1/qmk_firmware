@@ -4,9 +4,13 @@
 
 #include "tominabox1.h"
 
+enum littlefoot_keycodes {
+    MUTE = SAFE_RANGE,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
-    KC_GRV,   KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,   KC_BSPC,
+    KC_GESC,   KC_MPLY,   KC_MNXT,   KC_VOLD,   KC_VOLU,   KC_6,   KC_7,   KC_8,   KC_F8,   MUTE,
   //,-----------------------------------------------------------------------------------------------------------.
                   KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,KC_QUOTE,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -40,3 +44,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT, KC_SPACE, KC_TRNS,KC_NAV_ENT, KC_NO
   ),
 };
+
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record){
+    switch (keycode){
+        case MUTE:
+            if(record->event.pressed) {
+                register_code(KC_LCTL);
+                register_code(KC_F12);
+                unregister_code(KC_LCTL);
+                unregister_code(KC_F12);
+                return false;
+            }
+        break;
+    }
+    return true;
+}
