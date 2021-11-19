@@ -6,14 +6,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_33_split_spacewrap(
 	KC_Q, KC_W, KC_F, KC_P, KC_G, KC_J, KC_L, KC_U, KC_Y, KC_QUOT,
 	_______________HOMEROW_MOD_________________,
-	_______________COLEMAK3____________________,
+                  LT(_NAV, KC_Z),    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M, KC_COMM,  KC_DOT,     KC_SLSH,
     DM_REC1, KC_NO, KC_NAV_ENT, KC_NUM_SPC, KC_NAV_ENT, RGUI(RSFT(RCTL(KC_4)))
   ),
 
   [_NUM_SYM] = LAYOUT_33_split_spacewrap(
 	__________________NUM_1____________________,
-	__________________NUM_2____________________,
-	KC_BSLS, __________________NUM_3____________________, KC_DOT, KC_GRV,
+    KC_EXLM,    KC_AT,  KC_HASH,   TD(TD_DLR_LP), KC_PERC, KC_CIRC, TD(TD_AMP_RP),  KC_ASTR,   KC_EQL,  KC_MINS,
+    KC_TRNS,  KC_LCBR,  KC_LBRC,  KC_LPRN,   KC_UNDS, KC_RPRN,  KC_RBRC,  KC_RCBR,  KC_DOT,  KC_SLSH,
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS
   ),
 
