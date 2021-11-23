@@ -122,12 +122,12 @@ void dcap_finished(qk_tap_dance_state_t *state, void *user_data) {
     switch (dcaptap_state.state) {
         case TD_SINGLE_TAP: register_code(KC_D); break;
         case TD_SINGLE_HOLD: register_code(KC_CAPS); break;
-        case TD_DOUBLE_TAP: tap_code(KC_D); register_code(KC_D); break;
+        case TD_DOUBLE_TAP: tap_code(KC_D); break;
         // case TD_DOUBLE_HOLD: register_code(KC_D); break;
         // Last case is for fast typing. Assuming your key is `f`:
         // For example, when typing the word `buffer`, and you want to make sure that you send `ff` and not `Esc`.
         // In order to type `ff` when typing fast, the next character will have to be hit within the `TAPPING_TERM`, which by default is 200ms.
-        case TD_DOUBLE_SINGLE_TAP: tap_code(KC_D); register_code(KC_D);
+        case TD_DOUBLE_SINGLE_TAP: tap_code(KC_D);
         default: tap_code(KC_D);
     }
 }
@@ -188,6 +188,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return 200;
         case TD(TD_SLS_ENT):
             return 200;
+        case TD(TD_DCAP):
+            return 250;
         default:
             return TAPPING_TERM;
     }

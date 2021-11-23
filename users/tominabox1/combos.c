@@ -12,6 +12,7 @@ enum combo_events {
   COMBO_ESC2,
   COMBO_DEL,
   COMBO_QUES,
+  CRET2,
 };
 
 // const uint16_t PROGMEM caps_combo[] = {LSFT_T(KC_T), RSFT_T(KC_N), COMBO_END};
@@ -32,7 +33,7 @@ const uint16_t PROGMEM combo_del[] = {KC_U, KC_Y, KC_QUOT, COMBO_END};
 const uint16_t PROGMEM combo_ques[] = {KC_COMM, KC_DOT, COMBO_END};
 // const uint16_t PROGMEM combo_drec1[] = {KC_X, KC_Z, COMBO_END};
 // const uint16_t PROGMEM combo_ply1[] = {KC_X, KC_C, COMBO_END};
-//const uint16_t PROGMEM combo_space[] = {RCTL_T(KC_E),RALT_T(KC_I), COMBO_END};
+const uint16_t PROGMEM cret2[] = {KC_F, KC_P, COMBO_END};
 
 combo_t key_combos[] = {
 //  [CAPS_COMBO] = COMBO(caps_combo, KC_CAPS),
@@ -49,7 +50,7 @@ combo_t key_combos[] = {
   [COMBO_QUES] = COMBO(combo_ques,KC_SLSH),
 //   [COMBO_DREC1] = COMBO(combo_drec1,DM_REC1),
 //   [COMBO_PLY1] = COMBO(combo_ply1,DM_PLY1)
-//   [COMBO_SPACE] = COMBO(combo_space,KC_SPACE),
+  [CRET2] = COMBO(cret2,KC_ENT),
 };
 
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
