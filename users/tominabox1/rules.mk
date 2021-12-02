@@ -178,3 +178,17 @@ LTO_ENABLE = no
 #EXTRAFLAGS += -flto
 SRC += tominabox1.c
 endif
+
+ifeq ($(strip $(KEYBOARD)), jd40)
+TAP_DANCE_ENABLE = yes
+COMBO_ENABLE = yes
+#RGBLIGHT_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = no
+MOUSEKEY_ENABLE = no
+CONSOLE_ENABLE = no
+ENCODER_ENABLE = no
+EXTRAKEY_ENABLE = yes
+LTO_ENABLE = no
+#EXTRAFLAGS += -flto
+SRC += tominabox1.c
+endif
