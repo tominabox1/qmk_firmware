@@ -157,7 +157,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RSFT_T(KC_N):
-            return 200;
+            return 215;
         case LT(_NUM_SYM, KC_SPC):
             return 250;
         case KC_NAV_ENT:
@@ -165,7 +165,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LCTL_T(KC_TAB):
             return 120;
         case LSFT_T(KC_T):
-            return 180;
+            return 190;
         case LALT_T(KC_R):
             return 300;
         case RALT_T(KC_I):
