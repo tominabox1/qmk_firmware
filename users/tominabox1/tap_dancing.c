@@ -165,7 +165,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LCTL_T(KC_TAB):
             return 120;
         case LSFT_T(KC_T):
-            return 210;
+            return 200;
         case LALT_T(KC_R):
             return 300;
         case RALT_T(KC_I):

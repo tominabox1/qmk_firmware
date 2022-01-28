@@ -1,12 +1,16 @@
-# littlefoot_lx
+# Littlefoot LX
 
-![littlefoot_lx](imgur.com image replace me!)
+![littlefoot_lx](https://i.imgur.com/0WhgT5y.jpeg)
 
 *A short description of the keyboard/project*
 
-* Keyboard Maintainer: [tominabox1](https://github.com/yourusername)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+* Keyboard Maintainer: [tominabox1](https://github.com/tominabox1)
+* Hardware Supported: *Littlefoot LX integrated ATMega32u4*
+* Hardware Availability: *https://tachfactory.bigcartel.com*
+
+There are two versions of this PCB:
+    Rev1 is the PCB that shipped with the group buy run by RPMorrison on Tach Factory. These PCBs can be identified by the bodge wire on column 4.
+    Rev2 is the PCB available after this group buy.
 
 Make example for this keyboard (after setting up your build environment):
 
@@ -23,5 +27,4 @@ See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_to
 Enter the bootloader in 3 ways:
 
 * **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
-* **Physical reset button**: Briefly press the button on the back of the PCB - some may have pads you must short instead
 * **Keycode in layout**: Press the key mapped to `RESET` if it is available
