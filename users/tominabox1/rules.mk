@@ -51,7 +51,7 @@ endif
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), le_chiffre)
+ifeq ($(strip $(KEYBOARD)), tominabox1/le_chiffre)
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 RGBLIGHT_ENABLE = no
@@ -94,7 +94,7 @@ BOOTLOADER = atmel-dfu
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), qaz)
+ifeq ($(strip $(KEYBOARD)), tominabox1/qaz)
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 RGBLIGHT_ENABLE = yes
@@ -106,7 +106,7 @@ DYNAMIC_MACRO_ENABLE = yes
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), underscore33/rev2)
+ifeq ($(strip $(KEYBOARD)), tominabox1/underscore33/rev2)
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 RGBLIGHT_ENABLE = no
@@ -117,27 +117,7 @@ LTO_ENABLE = yes
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), alps.project.2)
-TAP_DANCE_ENABLE = yes
-COMBO_ENABLE = yes
-RGBLIGHT_ENABLE = no
-DYNAMIC_MACRO_ENABLE = yes
-MOUSEKEY_ENABLE = no
-CONSOLE_ENABLE = no
-SRC += tominabox1.c
-endif
-
-ifeq ($(strip $(KEYBOARD)), alps.project.1)
-TAP_DANCE_ENABLE = yes
-COMBO_ENABLE = yes
-RGBLIGHT_ENABLE = no
-DYNAMIC_MACRO_ENABLE = yes
-MOUSEKEY_ENABLE = no
-CONSOLE_ENABLE = no
-SRC += tominabox1.c
-endif
-
-ifeq ($(strip $(KEYBOARD)), leftover30_arm)
+ifeq ($(strip $(KEYBOARD)), tominabox1/leftover30_arm)
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 #RGBLIGHT_ENABLE = yes
@@ -151,7 +131,7 @@ LTO_ENABLE = no
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), adalyn)
+ifeq ($(strip $(KEYBOARD)), tominabox1/adalyn)
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 #RGBLIGHT_ENABLE = yes
@@ -165,7 +145,7 @@ LTO_ENABLE = no
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), littlefoot_lx/rev1)
+ifeq ($(strip $(KEYBOARD)), tominabox1/littlefoot_lx/rev1)
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 #RGBLIGHT_ENABLE = yes
@@ -193,7 +173,7 @@ LTO_ENABLE = no
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), alexei)
+ifeq ($(strip $(KEYBOARD)), tominabox1/alexei)
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 #RGBLIGHT_ENABLE = yes
