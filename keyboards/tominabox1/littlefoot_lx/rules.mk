@@ -1,1 +1,1 @@
-DEFAULT_FOLDER = littlefoot_lx/rev1
+DEFAULT_FOLDER = tominabox1/littlefoot_lx/rev1
