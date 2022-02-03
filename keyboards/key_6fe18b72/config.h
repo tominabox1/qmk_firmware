@@ -1,5 +1,5 @@
 /*
-Copyright 2012 Jun Wako <wakojun@gmail.com>
+Copyright 2022 keylective, llc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -15,17 +15,16 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
 
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID    0xFEED
-#define PRODUCT_ID   0x6060
+#define VENDOR_ID    0x7243
+#define PRODUCT_ID   0x7432
 #define DEVICE_VER   0x0001
-#define MANUFACTURER    geekhack
-#define PRODUCT         jd40v2
+#define MANUFACTURER    keylective
+#define PRODUCT         key_6fe18b72
 
 /* key matrix size */
 #define MATRIX_ROWS 4
@@ -68,5 +67,3 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_HUE_STEP 8
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
-
-#endif

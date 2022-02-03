@@ -200,3 +200,17 @@ BOOTMAGIC_ENABLE = yes
 #EXTRAFLAGS += -flto
 SRC += tominabox1.c
 endif
+
+ifeq ($(strip $(KEYBOARD)), key_6fe18b72)
+TAP_DANCE_ENABLE = yes
+COMBO_ENABLE = yes
+#RGBLIGHT_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = no
+MOUSEKEY_ENABLE = no
+CONSOLE_ENABLE = no
+ENCODER_ENABLE = no
+EXTRAKEY_ENABLE = yes
+LTO_ENABLE = no
+#EXTRAFLAGS += -flto
+SRC += tominabox1.c
+endif
