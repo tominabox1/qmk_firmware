@@ -9,15 +9,10 @@
 #define PERMISSIVE_HOLD_PER_KEY
 
 // Combos
-// #undef COMBO_COUNT
-// #define COMBO_COUNT
-// #define COMBO_VARIABLE_LEN
 #define COMBO_TERM 30
-#undef COMBO_TERM_PER_COMBO
-// #define COMBO_ALLOW_ACTION_KEYS
-// #define COMBO_MUST_HOLD_MODS
+#define COMBO_TERM_PER_COMBO
 
-/* Mousekey stuff */
+// Mousekey stuff
 #ifdef MOUSEKEY_ENABLE
   #define MOUSEKEY_INTERVAL 12
   #define MOUSEKEY_MAX_SPEED 6
