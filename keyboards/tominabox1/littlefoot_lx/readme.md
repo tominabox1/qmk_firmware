@@ -1,12 +1,12 @@
 # Littlefoot LX
 
-![littlefoot_lx](https://i.imgur.com/0WhgT5y.jpeg)
+![littlefoot_lx](https://i.imgur.com/0WhgT5yh.jpeg)
 
-*A short description of the keyboard/project*
+The Littlefoot LX is a premium, integrated pcb version of the Littlefoot by The_Royal. 
 
 * Keyboard Maintainer: [tominabox1](https://github.com/tominabox1)
-* Hardware Supported: *Littlefoot LX integrated ATMega32u4*
-* Hardware Availability: *https://tachfactory.bigcartel.com*
+* Hardware Supported: Littlefoot LX integrated ATMega32u4
+* Hardware Availability: https://tachfactory.bigcartel.com
 
 There are two versions of this PCB:
     Rev1 is the PCB that shipped with the group buy run by RPMorrison on Tach Factory. These PCBs can be identified by the bodge wire on column 4.
@@ -14,11 +14,11 @@ There are two versions of this PCB:
 
 Make example for this keyboard (after setting up your build environment):
 
-    make littlefoot_lx:default
+    make tominabox1/littlefoot_lx:default
 
 Flashing example for this keyboard:
 
-    make littlefoot_lx:default:flash
+    make tominabox1/littlefoot_lx:default:flash
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
