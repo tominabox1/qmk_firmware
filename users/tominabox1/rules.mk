@@ -51,7 +51,7 @@ endif
 SRC += tominabox1.c
 endif
 
-ifeq ($(strip $(KEYBOARD)), tominabox1/le_chiffre)
+ifeq ($(strip $(KEYBOARD)), tominabox1/le_chiffre/rev1)
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 RGBLIGHT_ENABLE = no
