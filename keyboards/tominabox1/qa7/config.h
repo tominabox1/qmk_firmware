@@ -1,6 +1,6 @@
 
 /*
-Copyright 2022 
+Copyright 2022
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,10 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x6060
+#define VENDOR_ID       0x7431
+#define PRODUCT_ID      0x0007
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    
+#define MANUFACTURER
 #define PRODUCT         QA7
 
 /* key matrix size */
@@ -42,24 +42,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5
-
-/* number of backlight levels */
-
-#ifdef BACKLIGHT_PIN
-#define BACKLIGHT_LEVELS 3
-#endif
-
-
-#ifdef RGB_DI_PIN
-#define RGBLED_NUM 0
-#define RGBLIGHT_ANIMATIONS
-#endif
-
-
-
-
-
-
 
 /*
  * Feature disable options
