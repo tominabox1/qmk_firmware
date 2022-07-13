@@ -22,5 +22,7 @@
 #define MATRIX_ROW_PINS { F7, C6, D4, B5 }
 #define MATRIX_COL_PINS { F5, B6, D7, E6, B4 }
 
+#undef SOFT_SERIAL_PIN
+#define SOFT_SERIAL_PIN D2
 #undef MASTER_RIGHT
 #define MASTER_LEFT
