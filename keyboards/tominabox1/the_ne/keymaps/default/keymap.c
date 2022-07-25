@@ -1,5 +1,5 @@
 /*
-Copyright 2022 
+Copyright 2022
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,19 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[0] = LAYOUT_all(
-		KC_SPC,        
+		KC_1, LT(1,KC_2)
 	),
 
 	[1] = LAYOUT_all(
-		KC_TRNS,        
-	),
-
-	[2] = LAYOUT_all(
-		KC_TRNS,        
-	),
-
-	[3] = LAYOUT_all(
-		KC_TRNS,        
+		QK_BOOT, QK_BOOT
 	)
 
 };
