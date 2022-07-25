@@ -3,8 +3,14 @@
     "keyboard_name": "cantor",
     "maintainer": "diepala",
     "bootloader": "stm32-dfu",
+<<<<<<< HEAD
     "features": {
         "bootmagic": true,
+=======
+    "diode_direction": "COL2ROW",
+    "features": {
+        "bootmagic_lite": true,
+>>>>>>> vial
         "command": false,
         "console": false,
         "extrakey": true,
@@ -12,14 +18,20 @@
         "nkro": true
     },
     "processor": "STM32F401",
+<<<<<<< HEAD
     "board": "BLACKPILL_STM32_F411",
+=======
+>>>>>>> vial
     "url": "https://github.com/diepala/cantor",
     "usb": {
         "device_version": "1.0.0",
         "pid": "0x0000",
         "vid": "0xFEED"
     },
+<<<<<<< HEAD
     "community_layouts": ["split_3x6_3"],
+=======
+>>>>>>> vial
     "layouts": {
         "LAYOUT_split_3x6_3": {
             "layout": [

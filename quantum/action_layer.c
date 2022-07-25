@@ -7,11 +7,17 @@
 #    include "nodebug.h"
 #endif
 
+<<<<<<< HEAD
 #include "keyboard.h"
 #include "keymap.h"
 #include "action.h"
 #include "util.h"
 #include "action_layer.h"
+=======
+#ifdef VIAL_ENABLE
+#include "vial.h"
+#endif
+>>>>>>> vial
 
 /** \brief Default Layer State
  */
@@ -235,9 +241,21 @@ uint8_t encoder_source_layers_cache[(NUM_ENCODERS + (CHAR_BIT)-1) / (CHAR_BIT)][
  *
  * Updates the supplied cache when changing layers
  */
+<<<<<<< HEAD
 void update_source_layers_cache_impl(uint8_t layer, uint16_t entry_number, uint8_t cache[][MAX_LAYER_BITS]) {
     const uint16_t storage_idx = entry_number / (CHAR_BIT);
     const uint8_t  storage_bit = entry_number % (CHAR_BIT);
+=======
+void update_source_layers_cache(keypos_t key, uint8_t layer) {
+#ifdef VIAL_ENABLE
+    if (key.row == VIAL_MATRIX_MAGIC) return;
+#endif
+
+    const uint8_t key_number  = key.col + (key.row * MATRIX_COLS);
+    const uint8_t storage_row = key_number / 8;
+    const uint8_t storage_bit = key_number % 8;
+
+>>>>>>> vial
     for (uint8_t bit_number = 0; bit_number < MAX_LAYER_BITS; bit_number++) {
         cache[storage_idx][bit_number] ^= (-((layer & (1U << bit_number)) != 0) ^ cache[storage_idx][bit_number]) & (1U << storage_bit);
     }
@@ -247,10 +265,22 @@ void update_source_layers_cache_impl(uint8_t layer, uint16_t entry_number, uint8
  *
  * reads the cached keys stored when the layer was changed
  */
+<<<<<<< HEAD
 uint8_t read_source_layers_cache_impl(uint16_t entry_number, uint8_t cache[][MAX_LAYER_BITS]) {
     const uint16_t storage_idx = entry_number / (CHAR_BIT);
     const uint8_t  storage_bit = entry_number % (CHAR_BIT);
     uint8_t        layer       = 0;
+=======
+uint8_t read_source_layers_cache(keypos_t key) {
+#ifdef VIAL_ENABLE
+    if (key.row == VIAL_MATRIX_MAGIC) return 0;
+#endif
+
+    const uint8_t key_number  = key.col + (key.row * MATRIX_COLS);
+    const uint8_t storage_row = key_number / 8;
+    const uint8_t storage_bit = key_number % 8;
+    uint8_t       layer       = 0;
+>>>>>>> vial
 
     for (uint8_t bit_number = 0; bit_number < MAX_LAYER_BITS; bit_number++) {
         layer |= ((cache[storage_idx][bit_number] & (1U << storage_bit)) != 0) << bit_number;

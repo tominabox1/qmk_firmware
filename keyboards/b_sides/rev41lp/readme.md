@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # The rev41lp keyboard
 
 ![The rev41lp keyboard by cyril279](https://imgur.com/nZNHSaWh.jpg)
@@ -7,6 +8,17 @@ Inspired by the REVIUNG series by Gtips, the rev41lp is 41-key column staggered 
 * Keyboard Maintainer: [cyril279](https://github.com/cyril279)
 * Hardware Supported: The REVlp PCBs, Pro Micro supported, bluetooth controller friendly.
 * Hardware Availability: [PCB Data](https://github.com/cyril279/keyboards/tree/main/revlp)
+=======
+# rev41lp
+
+![rev41lp]
+
+Inspired by the REVIUNG series by Gtips, the rev41lp is 41-key column staggered keyboard designed for use with low-profile pg1350 switches.
+
+Keyboard Maintainer: [cyril](https://github.com/cyril279)  
+Hardware Supported: The REVlp PCBs, Pro Micro supported, bluetooth controller friendly.  
+Hardware Availability: [PCB Data](https://github.com/cyril279/keyboards/tree/main/revlp)  
+>>>>>>> vial
 
 Make example for this keyboard (after setting up your build environment):
 

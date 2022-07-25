@@ -20,7 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
+<<<<<<< HEAD
 #define VENDOR_ID    0x03A7
+=======
+#define VENDOR_ID    0x03a7
+>>>>>>> vial
 #define PRODUCT_ID   0x0004
 #define DEVICE_VER   0x0001
 #define MANUFACTURER wavtype
@@ -45,7 +49,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define UNUSED_PINS
 
 /* COL2ROW, ROW2COL */
+<<<<<<< HEAD
 #define DIODE_DIRECTION ROW2COL
+=======
+#define DIODE_DIRECTION COL2ROW
+>>>>>>> vial
 
 /*
  * Split Keyboard specific options, make sure you have 'SPLIT_KEYBOARD = yes' in your rules.mk, and define SOFT_SERIAL_PIN.
@@ -70,6 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define RGBLIGHT_VAL_STEP 8
 #    define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
 #    define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
+<<<<<<< HEAD
 /*== or choose animations ==*/
 #    define RGBLIGHT_EFFECT_BREATHING
 #    define RGBLIGHT_EFFECT_RAINBOW_MOOD
@@ -80,6 +89,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define RGBLIGHT_EFFECT_STATIC_GRADIENT
 #    define RGBLIGHT_EFFECT_RGB_TEST
 #    define RGBLIGHT_EFFECT_ALTERNATING
+=======
+/*== all animations enable ==*/
+#    define RGBLIGHT_ANIMATIONS
+/*== or choose animations ==*/
+//#    define RGBLIGHT_EFFECT_BREATHING
+//#    define RGBLIGHT_EFFECT_RAINBOW_MOOD
+//#    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+//#    define RGBLIGHT_EFFECT_SNAKE
+//#    define RGBLIGHT_EFFECT_KNIGHT
+//#    define RGBLIGHT_EFFECT_CHRISTMAS
+//#    define RGBLIGHT_EFFECT_STATIC_GRADIENT
+//#    define RGBLIGHT_EFFECT_RGB_TEST
+//#    define RGBLIGHT_EFFECT_ALTERNATING
+>>>>>>> vial
 /*== customize breathing effect ==*/
 /*==== (DEFAULT) use fixed table instead of exp() and sin() ====*/
 //#    define RGBLIGHT_BREATHE_TABLE_SIZE 256      // 256(default) or 128 or 64
@@ -106,6 +129,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 2
 
+<<<<<<< HEAD
+=======
+#define VIAL_COMBO_ENTRIES 4
+
+#define VIAL_TAP_DANCE_ENTRIES 4
+>>>>>>> vial
 
 /*
  * Force NKRO
@@ -143,3 +172,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
+<<<<<<< HEAD
+=======
+
+/* disable these deprecated features by default */
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+
+/* Bootmagic Lite key configuration */
+//#define BOOTMAGIC_LITE_ROW 0
+//#define BOOTMAGIC_LITE_COLUMN 0
+>>>>>>> vial

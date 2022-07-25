@@ -1,9 +1,14 @@
 # AKIRA
 
 * Keyboard Maintainer: [eugenepy](https://github.com/eugenepy)
+<<<<<<< HEAD
 * Hardware Supported: AKIRA pcb, both Hotswap and solderable.
 * Hardware Availability: Not yet on groupbuy
 
+=======
+* Hardware Supported: ARKIA pcb, both Hotswap and solderable. *The PCBs, controllers supported*
+* Hardware Availability: Not yet on groupbuy *Links to where you can find this hardware*
+>>>>>>> vial
 # Build
 Make example for this keyboard (after setting up your build environment):
 
