@@ -1,11 +1,14 @@
 # MCU name
 MCU = STM32F072
 
+# Bootloader selection
+BOOTLOADER = stm32-dfu
+
 # Build Options
 #   change to "no" to disable the options, or define them in the Makefile in
 #   the appropriate keymap folder that will get included automatically
 #
-BOOTMAGIC_ENABLE = lite      # Virtual DIP switch configuration
+BOOTMAGIC_ENABLE = yes      # Virtual DIP switch configuration
 ## (Note that for BOOTMAGIC on Teensy LC you have to use a custom .ld script.)
 MOUSEKEY_ENABLE = yes      # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
