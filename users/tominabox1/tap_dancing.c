@@ -145,12 +145,12 @@ void dcap_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_QUESDOT] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, qdot_each, qdot_reset, 175),
-    [TD_DLR_LP] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dlp_each, dlp_reset, 300),
-    [TD_AMP_RP] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, arp_each, arp_reset, 300),
-    [TD_RESET] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dance_reset_finish, NULL, 500),
+    [TD_QUESDOT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, qdot_each, qdot_reset),
+    [TD_DLR_LP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dlp_each, dlp_reset),
+    [TD_AMP_RP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, arp_each, arp_reset),
+    [TD_RESET] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_reset_finish, NULL),
     [TD_SLS_ENT] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH,KC_ENT),
-    [TD_DCAP] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, dcap_finished, dcap_reset, 250)
+    [TD_DCAP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dcap_finished, dcap_reset)
     };
 
 /* Per key tapdance configs */
