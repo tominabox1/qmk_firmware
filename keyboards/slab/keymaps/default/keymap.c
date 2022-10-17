@@ -65,3 +65,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_5, KC_6, KC_7, KC_8
     )
 };
+
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        if (clockwise) {
+            tap_code(KC_PGUP);
+        } else {
+            tap_code(KC_PGDN);
+        }
+    }
+    return true;
+}
