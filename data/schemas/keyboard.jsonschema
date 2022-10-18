@@ -87,6 +87,7 @@
         "bootloader": {
             "type": "string",
             "enum": [
+                "vibl",
                 "atmel-dfu",
                 "bootloadhid",
                 "bootloadHID",
