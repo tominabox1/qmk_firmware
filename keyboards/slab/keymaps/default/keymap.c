@@ -15,41 +15,45 @@
  */
 #include QMK_KEYBOARD_H
 #include "analog.h"
+// #include "qmk_midi.h"
 int16_t max_pot_val = 1023;
-int16_t max_ticks = 20;
+int16_t max_ticks = 50;
 int16_t pot_oldVal = 0;
+int16_t ticks       = 0;
 int16_t pot_val    = 0;
 bool moving     = false;
-#define POT_TOLERANCE 50
-#define POT_PIN F0
+#define POT_TOLERANCE 10
+#define SLIDER_PIN F0
 #include "print.h"
-
 
 void matrix_init_user(void) {
     analogReference(ADC_REF_POWER);
+    for (int i = 0; i < max_ticks; ++i) {
+        tap_code(KC_VOLD);
+    }
+    ticks = 0;
 }
 
-void matrix_scan_user(void){
-    pot_val   = (analogReadPin(POT_PIN));
+void matrix_scan_user(void) {
+    // slider();
 
+    pot_val = (analogReadPin(SLIDER_PIN));
     // If there is a big enough change, then we need to do something
     if (abs(pot_val - pot_oldVal) > POT_TOLERANCE) {
-        moving = true;
-        pot_oldVal = pot_val;
-    }
-    else{
-        if (moving){
-            // Do some fancy conversion to get 'absolute' position to num tap_codes to send
-            // Reset moving to 0 so that we don't get multiple attempts to do this
-            int num_ticks = ((float)pot_val/max_pot_val)*max_ticks;
-            for (int i = 0; i<max_ticks;++i){
-                tap_code(KC__VOLDOWN);
+        // uprintf("Pot Val: %d",pot_val);
+        int num_ticks   = ((float)pot_val / max_pot_val) * max_ticks;
+        int delta_ticks = num_ticks - ticks;
+        if (delta_ticks < 0) {
+            for (int i = 0; i < abs(delta_ticks); ++i) {
+                tap_code(KC_VOLD);
             }
-            for (int i = 0; i<num_ticks;++i){
-                tap_code(KC__VOLUP);
+        } else {
+            for (int i = 0; i < abs(delta_ticks); ++i) {
+                tap_code(KC_VOLU);
             }
-            moving = false;
         }
+        ticks      = num_ticks;
+        pot_oldVal = pot_val;
     }
 }
 
