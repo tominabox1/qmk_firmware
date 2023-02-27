@@ -1,5 +1,4 @@
 #pragma once
-#include "tominabox1.h"
 #include "tap_dancing.h"
 
 // Tapping term settings
@@ -28,11 +27,6 @@
 #   // define DYNAMIC_MACRO_SIZE 24
 #endif
 
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
-
-extern keymap_config_t keymap_config;
-
 // Layer Defs
 #define _BASE 0
 #define _NUM_SYM 1
@@ -47,7 +41,7 @@ extern keymap_config_t keymap_config;
 //     KC_TDCAP,
 // };
 
-// /* Tapdnce keycodes */
+/* Tapdnce keycodes */
 #define KC_TABESC TD(TD_TAB_ESC)  // Single tap tab, double tap esc
 #define KC_QESC TD(TD_Q_ESC)      // Single tap Q, double tap esc
 #define KC_QESENT TD(TD_QUES_ENT) // Single tap slsh, double tap enter, hold rshift
@@ -63,7 +57,7 @@ extern keymap_config_t keymap_config;
 #define KC_WTAB TD(TD_WTAB)       // Single tap w, double tap tab
 #define KC_DCAP TD(TD_DCAP)       // Tap d, hold caps
 
-// /* Basic mod-taps */
+/* Basic mod-taps */
 #define KC_CTLTB CTL_T(KC_TAB)   // Tab on tap, ctrl on hold
 #define KC_A_CT LCTL_T(KC_A)     // A on tap, ctrl on hold
 #define KC_Z_SF LSFT_T(KC_Z)     // Z on tap, shift on hold
@@ -73,14 +67,14 @@ extern keymap_config_t keymap_config;
 #define KC_GENT LALT_T(KC_ENT)   // Return on tap, ALT or GUI on hold
 #define KC_SSLSH RSFT_T(KC_SLSH) // Slash on tap, shift on hold
 
-// /* Layer taps */
+/* Layer taps */
 #define KC_NUM_SPC LT(_NUM_SYM, KC_SPC) // Space on tap, num/symbol layer on hold
 #define KC_FDOT LT(_FKEY, KC_DOT)       // period on tap, Fkey layer on hold
 #define KC_NAV_ENT LT(_NAV, KC_ENT)     // Return on tap, Nav layer on hold
 #define KC_SPC_RSE LT(_RAISE, KC_SPC)   // Space on tap, Raise on hold
 #define KC_FKEY LT(_FKEY, KC_ENT)       // Return on tap, Fkey on hold
 
-// /* RGB keycodes */
+/* RGB keycodes */
 #define KC_LTOG RGB_TOG
 #define KC_LHUI RGB_HUI
 #define KC_LHUD RGB_HUD

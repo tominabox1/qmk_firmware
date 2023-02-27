@@ -1,4 +1,5 @@
 #include "tap_dancing.h"
+#include "quantum.h"
 
 // Tap Dances
 
