@@ -1,87 +1,91 @@
 #pragma once
+#include "tominabox1.h"
+#include "tap_dancing.h"
 
 // Tapping term settings
+#undef TAPPING_TERM
+#define TAPPING_TERM 50
+#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
 #define TAPPING_TERM_PER_KEY
-#define TAP_HOLD_CAPS_DELAY 350
+#define IGNORE_TAPPING_FORCE_HOLD_PER_KEY
+#define PERMISSIVE_HOLD_PER_KEY
 
-// OLED settings
-#define OLED_FONT_H "users/tominabox1/doug.c"
-#define OLED_DISABLE_TIMEOUT
+// Combos
+#undef COMBO_TERM
+#define COMBO_TERM 30
+#define COMBO_TERM_PER_COMBO
 
-#define DEBOUNCE 5
+// Mousekey stuff
+#ifdef MOUSEKEY_ENABLE
+  #define MOUSEKEY_INTERVAL 12
+  #define MOUSEKEY_MAX_SPEED 6
+  #define MOUSEKEY_TIME_TO_MAX 50
+  #define MOUSEKEY_DELAY 20
+#endif
 
-// Setup RGB settings for the Dimple.
-#ifdef KEYBOARD_lazydesigners_dimple
-  #ifdef RGBLIGHT_ENABLE
-    #undef RGBLED_NUM
-    #define RGBLED_NUM 50
-#define RGBLIGHT_EFFECT_BREATHING
-#define RGBLIGHT_EFFECT_RAINBOW_MOOD
-#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-#define RGBLIGHT_EFFECT_SNAKE
-#define RGBLIGHT_EFFECT_KNIGHT
-#define RGBLIGHT_EFFECT_CHRISTMAS
-#define RGBLIGHT_EFFECT_STATIC_GRADIENT
-#define RGBLIGHT_EFFECT_RGB_TEST
-#define RGBLIGHT_EFFECT_ALTERNATING
-#define RGBLIGHT_EFFECT_TWINKLE
-    #define RGBLIGHT_SLEEP
-  #endif // RGBLIGHT_ENABLE
+#ifdef DYNAMIC_MACRO_ENABLE
+#    define DYNAMIC_MACRO_NO_NESTING
+#   // define DYNAMIC_MACRO_SIZE 24
+#endif
 
-  #ifdef RGB_MATRIX_ENABLE
-  #undef RGBLED_NUM
-  #define RGBLED_NUM 50
-  #define RGB_MATRIX_LED_COUNT RGBLED_NUM
-  #endif // RGBL_MATRIX_ENABLE
-#endif // KEYBOARD_lazydesigners_dimple
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
 
-// RGB_Matrix settings
-#ifdef RGB_MATRIX_ENABLE
-  #define RGB_MATRIX_KEYPRESSES // reacts to keypresses
-  #define RGB_DISABLE_WHEN_USB_SUSPENDED // turn off effects when suspended
-  #define RGB_MATRIX_LED_FLUSH_LIMIT 16 // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)
-  #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150 // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
-  #define RGB_MATRIX_HUE_STEP 8
-  #define RGB_MATRIX_SAT_STEP 8
-  #define RGB_MATRIX_VAL_STEP 8
-  #define RGB_MATRIX_SPD_STEP 10
-  #define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
-  /* Disable the animations you don't want/need.  You will need to disable a good number of these
-    because they take up a lot of space.  Disable until you can successfully compile your firmware. */
-// #undef ENABLE_RGB_MATRIX_ALPHAS_MODS
-// #undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
-#    undef ENABLE_RGB_MATRIX_BREATHING
-// #undef ENABLE_RGB_MATRIX_CYCLE_ALL
-// #undef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
-// #undef ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
-// #undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN
-// #undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL
-#    undef ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
-#    undef ENABLE_RGB_MATRIX_DUAL_BEACON
-#    undef ENABLE_RGB_MATRIX_RAINBOW_BEACON
-#    undef ENABLE_RGB_MATRIX_RAINBOW_PINWHEELS
-// #undef ENABLE_RGB_MATRIX_RAINDROPS
-#    undef ENABLE_RGB_MATRIX_JELLYBEN_RAINDROPS
-// # undef ENABLE_RGB_MATRIX_TYPING_HEATMAP
-#    undef ENABLE_RGB_MATRIX_DIGITAL_RAIN
-#    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE
-#    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-// #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
-// #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
-// #undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
-#    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
-#    undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
-#    undef ENABLE_RGB_MATRIX_SPLASH
-#    undef ENABLE_RGB_MATRIX_MULTISPLASH
-#    undef ENABLE_RGB_MATRIX_SOLID_SPLASH
-#    undef ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
-#endif //RGB_MATRIX_ENABLE
+extern keymap_config_t keymap_config;
 
-// Hex size reduction options
-#ifndef NO_DEBUG
-  #define NO_DEBUG
-#endif // !NO_DEBUG
-#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
-  #define NO_PRINT
-#endif // !NO_PRINT
-#define NO_ACTION_ONESHOT
+// Layer Defs
+#define _BASE 0
+#define _NUM_SYM 1
+#define _NUM 1
+#define _NAV 2
+#define _FKEY 3
+// enum custom_keycodes {
+//     BASE = SAFE_RANGE,
+//     RGBRST,
+//     SPONGEBOB,
+//     AESTHETIC,
+//     KC_TDCAP,
+// };
+
+// /* Tapdnce keycodes */
+#define KC_TABESC TD(TD_TAB_ESC)  // Single tap tab, double tap esc
+#define KC_QESC TD(TD_Q_ESC)      // Single tap Q, double tap esc
+#define KC_QESENT TD(TD_QUES_ENT) // Single tap slsh, double tap enter, hold rshift
+#define KC_SPSHFT TD(TD_SPC_SHFT) // Single tap spce, hold shift
+#define KC_CTLZ TD(TD_CTRL_Z)     // Single tap z, double tap ctrl+z (undo)
+#define KC_CTLY TD(TD_CTRL_Y)     // Single tap y, double tap ctrl+y (redo)
+#define KC_CTLC TD(TD_CTRL_C)     // Single tap c, double tap ctrl+c (copy)
+#define KC_CTLV TD(TD_CTRL_V)     // Single tap v, double tap ctrl+v (paste)
+#define KC_CTLA TD(TD_CTRL_A)     // Single tap a, hold ctrl, double tap ctrl*a (select all)
+#define KC_OBSLS TD(TD_O_BSLS)    // Single tap o, double tap backslash
+#define KC_DQOT TD(TD_QUOTE)      // Single tap quote, double tap double quote
+#define KC_QCOL TD(TD_QCOL)       // Single tap quote, double tap semicolon
+#define KC_WTAB TD(TD_WTAB)       // Single tap w, double tap tab
+#define KC_DCAP TD(TD_DCAP)       // Tap d, hold caps
+
+// /* Basic mod-taps */
+#define KC_CTLTB CTL_T(KC_TAB)   // Tab on tap, ctrl on hold
+#define KC_A_CT LCTL_T(KC_A)     // A on tap, ctrl on hold
+#define KC_Z_SF LSFT_T(KC_Z)     // Z on tap, shift on hold
+#define KC_C_AL LALT_T(KC_C)     // C on tap, GUI or Alt on hold
+#define KC_K_GU LGUI_T(KC_K)     // K on tap, GUI or Alt on hold
+#define KC_ENSF LSFT_T(KC_ENT)   // Return on tap, Shift on hold
+#define KC_GENT LALT_T(KC_ENT)   // Return on tap, ALT or GUI on hold
+#define KC_SSLSH RSFT_T(KC_SLSH) // Slash on tap, shift on hold
+
+// /* Layer taps */
+#define KC_NUM_SPC LT(_NUM_SYM, KC_SPC) // Space on tap, num/symbol layer on hold
+#define KC_FDOT LT(_FKEY, KC_DOT)       // period on tap, Fkey layer on hold
+#define KC_NAV_ENT LT(_NAV, KC_ENT)     // Return on tap, Nav layer on hold
+#define KC_SPC_RSE LT(_RAISE, KC_SPC)   // Space on tap, Raise on hold
+#define KC_FKEY LT(_FKEY, KC_ENT)       // Return on tap, Fkey on hold
+
+// /* RGB keycodes */
+#define KC_LTOG RGB_TOG
+#define KC_LHUI RGB_HUI
+#define KC_LHUD RGB_HUD
+#define KC_LSAI RGB_SAI
+#define KC_LSAD RGB_SAD
+#define KC_LVAI RGB_VAI
+#define KC_LVAD RGB_VAD
+#define KC_LMOD RGB_MOD

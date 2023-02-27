@@ -1,26 +1,27 @@
-# Build Options
-#   change to "no" to disable the options, or define them in the Makefile in
-#   the appropriate keymap folder that will get included automatically
-#
-CONSOLE_ENABLE = no
+# Common feature for all keyboards
+BOOTMAGIC_ENABLE = yes
+EXTRAKEY_ENABLE = yes
 TAP_DANCE_ENABLE = yes
-NKRO_ENABLE = yes
-BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
+COMBO_ENABLE = yes
 
-ifeq ($(strip $(KEYBOARD)), crkbd/rev1)
-RGB_MATRIX_ENABLE = yes
-EXTRAFLAGS += -flto
-BOOTLOADER = qmk-dfu
-OLED_ENABLE = yes
-OLED_DRIVER = SSD1306
+ifeq ($(strip $(KEYBOARD)),lazydesigners/apricot)
+RGB_MATRIX_ENABLE = no
+DYNAMIC_MACRO_ENABLE = no
+MOUSEKEY_ENABLE = no
+CONSOLE_ENABLE = no
+ENCODER_ENABLE = no
+EXTRAKEY_ENABLE = yes
+LTO_ENABLE = yes
 endif
 
-ifeq ($(strip $(KEYBOARD)), lazydesigners/dimple)
-MOUSEKEY_ENABLE = no        # Mouse keys
-EXTRAKEY_ENABLE = yes        # Audio control and System control
-BACKLIGHT_ENABLE = yes       # Enable keyboard backlight functionality on B7 by default
-RGBLIGHT_ENABLE = yes        # Enable keyboard RGB underglow
+ifeq ($(strip $(KEYBOARD)), tominabox1/underscore33/rev2)
+RGBLIGHT_ENABLE = no
+DYNAMIC_MACRO_ENABLE = no
+MOUSEKEY_ENABLE = yes
+CONSOLE_ENABLE = no
+LTO_ENABLE = yes
 endif
 
-
+SRC += tap_dancing.c
+SRC += combos.c
 SRC += tominabox1.c
