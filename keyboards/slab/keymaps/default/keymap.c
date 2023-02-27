@@ -16,13 +16,13 @@
 #include QMK_KEYBOARD_H
 #include "analog.h"
 // #include "qmk_midi.h"
-int16_t max_pot_val = 1023;
-int16_t max_ticks = 50;
+int16_t max_pot_val = 2047;
+int16_t max_ticks = 35;
 int16_t pot_oldVal = 0;
 int16_t ticks       = 0;
 int16_t pot_val    = 0;
 bool moving     = false;
-#define POT_TOLERANCE 10
+#define POT_TOLERANCE 15
 #define SLIDER_PIN F0
 #include "print.h"
 
@@ -71,12 +71,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        if (clockwise) {
-            tap_code(KC_PGUP);
-        } else {
-            tap_code(KC_PGDN);
-        }
+    if (clockwise) {
+        tap_code_delay(KC_A, 10);
+    } else {
+        tap_code_delay(KC_B, 10);
     }
     return true;
-}
+};

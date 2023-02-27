@@ -30,6 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Define encoder pads */
 #define ENCODERS_PAD_A { B0 }
 #define ENCODERS_PAD_B { B1 }
+// #define ENCODERS_PAD_C { B2 }
+#define ENCODER_RESOLUTION 1
+
+// #define ENCODER_DEFAULT_POS 0x3
 
 /* COL2ROW, ROW2COL */
 #define DIODE_DIRECTION COL2ROW
