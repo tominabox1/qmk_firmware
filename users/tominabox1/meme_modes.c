@@ -65,14 +65,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
       mod_state = get_mods();                                 // save mod state for comparison and later restoration
       if ((mod_state & MOD_MASK_CTRL) && (mod_state & MOD_MASK_SHIFT)) {                         // if either ctrl is held
-        unregister_mods(MOD_BIT(KC_LCTRL) | MOD_BIT(KC_RCTRL) | MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSFT)); // unregister both ctrl
+        unregister_mods(MOD_BIT(KC_LCTL) | MOD_BIT(KC_RCTL) | MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT)); // unregister both ctrl
         tap_code16(KC_SCLN);                                    // send ":" unmolested
         set_mods(mod_state);                                  // restore mod state
         return false;                                         // done processing
       }
 
       else if (mod_state & MOD_MASK_CTRL) {                         // if either ctrl is held
-        unregister_mods(MOD_BIT(KC_LCTRL) | MOD_BIT(KC_RCTRL)); // unregister both ctrl
+        unregister_mods(MOD_BIT(KC_LCTL) | MOD_BIT(KC_RCTL)); // unregister both ctrl
         tap_code16(KC_COLN);                                    // send ":" unmolested
         set_mods(mod_state);                                  // restore mod state
         return false;                                         // done processing

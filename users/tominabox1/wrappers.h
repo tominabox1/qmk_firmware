@@ -17,7 +17,6 @@ expanded before being used as arguments to the LAYOUT_xxx macro.
 #define LAYOUT_33_split_spacewrap(...)       LAYOUT_33_split_space(__VA_ARGS__)
 #define LAYOUT_qaz_wrap(...)                 LAYOUT_split_space(__VA_ARGS__)
 
-
 /* Colemak */
 #define _______________COLEMAK1____________________       KC_Q, KC_W, KC_F, KC_P, KC_G, KC_J, KC_L, KC_U, KC_Y, KC_SCLN
 #define _______________COLEMAK2____________________       KC_A, KC_R, KC_S, KC_T, TD(TD_DCAP), KC_H, KC_N, KC_E, KC_I, KC_O
