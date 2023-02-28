@@ -1,4 +1,5 @@
 #pragma once
+#include "quantum.h"
 #include "tap_dancing.h"
 
 // Tapping term settings

@@ -24,4 +24,8 @@ endif
 
 SRC += tap_dancing.c
 SRC += combos.c
-SRC += tominabox1.c
+# SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
+ifneq ("$(wildcard $(KEYMAP_JSON))", "")
+    OPT_DEFS += -DKEYMAP_C=$(KEYMAP_OUTPUT)/src/keymap.c
+endif
