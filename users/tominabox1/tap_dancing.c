@@ -190,6 +190,10 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return 200;
         case TD(TD_DCAP):
             return 200;
+        case TD(TD_DLR_LP):
+            return 250;
+        case TD(TD_AMP_RP):
+            return 250;
         default:
             return TAPPING_TERM;
     }
