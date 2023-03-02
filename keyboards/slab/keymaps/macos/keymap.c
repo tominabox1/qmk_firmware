@@ -17,11 +17,11 @@
 #include "analog.h"
 
 int16_t max_pot_val = 1600;
-int16_t max_ticks = 80; // Windows - allows for full control from Mute to 100% volume on Windows systems when used as Vol Up/Down slider.
+int16_t max_ticks   = 28;   // MacOS - allows for full control from Mute to 100% volume on MacOS systems when used as Vol Up/Down slider.
 int16_t pot_oldVal = 0;
-int16_t ticks       = 0;
+int16_t ticks      = 0;
 int16_t pot_val    = 0;
-bool moving     = false;
+bool    moving     = false;
 #define POT_TOLERANCE 20
 #define SLIDER_PIN F0
 #include "print.h"
@@ -58,17 +58,11 @@ void matrix_scan_user(void) {
 }
 
 // Defines names for use in layer keycodes and the keymap
-enum layer_names {
-    _BASE
-};
+enum layer_names { _BASE };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
-    [_BASE] = LAYOUT(
-    KC_1, KC_2, KC_3, KC_4,
-    KC_5, KC_6, KC_7, KC_8
-    )
-};
+    [_BASE] = LAYOUT(KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8)};
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (clockwise) {
