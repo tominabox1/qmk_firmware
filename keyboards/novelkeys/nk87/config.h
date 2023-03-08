@@ -17,11 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "config_common.h"
-
-/* key matrix size */
-#define MATRIX_ROWS 6
-#define MATRIX_COLS 17
 
 #define MATRIX_ROW_PINS { A7, B3, B4, B5, A8, A4 }
 #define MATRIX_COL_PINS { A13, A10, A9, A14, A15, B8, B9, B2, B0, A6, A0, A1, A2, A3, A5, B1, B10 }
@@ -30,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
 
+<<<<<<< HEAD
 /* define if matrix has ghost (lacks anti-ghosting diodes) */
 //#define MATRIX_HAS_GHOST
 
@@ -75,6 +71,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define BOOTMAGIC_LITE_ROW 0
 #define BOOTMAGIC_LITE_COLUMN 0
 
+=======
+>>>>>>> master
 /* Backlight options */
 
 #define RGB_BACKLIGHT_ENABLED 1
@@ -109,7 +107,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_BACKLIGHT_COLOR_2 { .h = 127, .s = 255 }
 
 #define DRIVER_COUNT 2
-#define DRIVER_LED_TOTAL 128
+#define RGB_MATRIX_LED_COUNT 128
 
 // These define which keys in the matrix are alphas/mods
 // Used for backlight effects so colors are different for
@@ -131,6 +129,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Backlight config starts after VIA's EEPROM usage,
 // dynamic keymaps start after this.
 #define VIA_EEPROM_CUSTOM_CONFIG_SIZE 32
-
-// VIA lighting is handled by the keyboard-level code
-#define VIA_CUSTOM_LIGHTING_ENABLE
