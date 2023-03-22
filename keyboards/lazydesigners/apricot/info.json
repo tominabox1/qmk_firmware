@@ -1,7 +1,13 @@
 {
+    "usb":{
+        "vid": "0x4C44",
+        "pid": "0x0031",
+        "device_version": "1.0.0"
+    },
     "keyboard_name": "apricot",
     "url": "http://lazydesigners.cn",
     "maintainer": "LAZYDESIGNERS",
+    "manufacturer": "LAZYDESIGNERS"
     "layouts": {
         "LAYOUT": {
             "layout": [
