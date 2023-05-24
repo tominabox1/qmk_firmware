@@ -18,10 +18,12 @@ enum layers {
 };
 
 enum custom_keycodes {
-  BASE = SAFE_RANGE,
+  BASE,
   RGBRST,
   SPONGEBOB,
   AESTHETIC,
+  KC_SECRET_1,
+  USER_SAFE_RANGE,
 };
 
 enum {

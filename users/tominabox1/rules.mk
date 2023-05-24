@@ -269,4 +269,5 @@ EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes
 #EXTRAFLAGS += -flto
 SRC += tominabox1.c
+SRC += secrets.c
 endif
