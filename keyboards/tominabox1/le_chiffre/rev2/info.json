@@ -1,5 +1,7 @@
 {
     "usb": {
+        "vid": "0x7431",
+        "pid": "0x6B6D",
         "device_version": "0.0.2"
     },
     "encoder": {
