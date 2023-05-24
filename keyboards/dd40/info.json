@@ -1,0 +1,11 @@
+{
+    "usb":{
+        "vid": "0x6F6A",
+        "pid": "0x6434",
+        "device_version": "1.0.0"
+    },
+    "keyboard_name": "dd40",
+    "maintainer": "ojthetiny",
+    "manufacturer": "ojthetiny"
+
+}
