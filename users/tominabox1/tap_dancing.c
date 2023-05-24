@@ -17,7 +17,7 @@ typedef struct {
     td_state_t state;
 } td_tap_t;
 
-td_state_t cur_dance(qk_tap_dance_state_t *state) {
+td_state_t cur_dance(tap_dance_state_t *state) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
         // Key has not been interrupted, but the key is still held. Means you want to send a 'HOLD'.
@@ -46,7 +46,7 @@ static td_tap_t dcaptap_state = {
     .state = TD_NONE
 };
 
-void qdot_each(qk_tap_dance_state_t *state, void *user_data){
+void qdot_each(tap_dance_state_t *state, void *user_data){
     switch (state->count) {
         case 1:
             register_code(KC_DOT);
@@ -57,12 +57,12 @@ void qdot_each(qk_tap_dance_state_t *state, void *user_data){
     }
 }
 
-void qdot_reset(qk_tap_dance_state_t *state, void *user_data) {
+void qdot_reset(tap_dance_state_t *state, void *user_data) {
             unregister_code(KC_DOT);
             unregister_code(KC_SLSH);
     }
 
-void dlp_each(qk_tap_dance_state_t *state, void *user_data) {
+void dlp_each(tap_dance_state_t *state, void *user_data) {
     switch (state->count) {
         case 1:
             register_code16(KC_DLR);
@@ -79,7 +79,7 @@ void dlp_each(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void dlp_reset(qk_tap_dance_state_t *state, void *user_data) {
+void dlp_reset(tap_dance_state_t *state, void *user_data) {
             unregister_code16(KC_DLR);
             unregister_code16(KC_LPRN);
             unregister_code16(KC_LBRC);
@@ -87,7 +87,7 @@ void dlp_reset(qk_tap_dance_state_t *state, void *user_data) {
 
     }
 
-void arp_each(qk_tap_dance_state_t *state, void *user_data) {
+void arp_each(tap_dance_state_t *state, void *user_data) {
     switch (state->count) {
         case 1:
             register_code16(KC_AMPR);
@@ -104,20 +104,20 @@ void arp_each(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void arp_reset(qk_tap_dance_state_t *state, void *user_data) {
+void arp_reset(tap_dance_state_t *state, void *user_data) {
             unregister_code16(KC_AMPR);
             unregister_code16(KC_RPRN);
             unregister_code16(KC_RBRC);
             unregister_code16(KC_RCBR);
     }
 
-void dance_reset_finish(qk_tap_dance_state_t *state, void *user_data) {
+void dance_reset_finish(tap_dance_state_t *state, void *user_data) {
     if (state->count >=4) {
         reset_keyboard();
     }
 }
 
-void dcap_finished(qk_tap_dance_state_t *state, void *user_data) {
+void dcap_finished(tap_dance_state_t *state, void *user_data) {
     dcaptap_state.state = cur_dance(state);
     switch (dcaptap_state.state) {
         case TD_SINGLE_TAP: register_code(KC_D); break;
@@ -132,7 +132,7 @@ void dcap_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void dcap_reset(qk_tap_dance_state_t *state, void *user_data) {
+void dcap_reset(tap_dance_state_t *state, void *user_data) {
     switch (dcaptap_state.state) {
         case TD_SINGLE_TAP: unregister_code(KC_D); break;
         case TD_SINGLE_HOLD: unregister_code(KC_CAPS); break;
@@ -144,7 +144,7 @@ void dcap_reset(qk_tap_dance_state_t *state, void *user_data) {
     dcaptap_state.state = TD_NONE;
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_QUESDOT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, qdot_each, qdot_reset),
     [TD_DLR_LP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dlp_each, dlp_reset),
     [TD_AMP_RP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, arp_each, arp_reset),
@@ -199,11 +199,11 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 };
 
-bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    default:
-      return true;
-  }
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        default:
+            return true;
+    }
 }
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
