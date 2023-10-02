@@ -5,7 +5,7 @@ BACKLIGHT_ENABLE = no
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), thevankeyboards/minivan)
@@ -13,7 +13,7 @@ EXTRAKEY_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
 RGBLIGHT_ENABLE = yes
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), thevankeyboards/roadkit)
@@ -35,7 +35,7 @@ ifeq ($(strip $(LED_ANIMATIONS)), yes)
     OPT_DEFS += -DLED_ANIMATIONS
 endif
 
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), handwired/postageboard/mini)
@@ -48,7 +48,7 @@ ifeq ($(strip $(LED_ANIMATIONS)), yes)
     # OPT_DEFS += -DRGBLIGHT_ANIMATIONS
     OPT_DEFS += -DLED_ANIMATIONS
 endif
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), tominabox1/le_chiffre/rev1)
@@ -61,7 +61,7 @@ LED_ANIMATIONS = yes
 MOUSEKEY_ENABLE = no
 OLED_DRIVER_ENABLE = no
 DYNAMIC_MACRO_ENABLE = no
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), lazydesigners/dimple/staggered/rev1)
@@ -70,7 +70,7 @@ EXTRAKEY_ENABLE = yes        # Audio control and System control
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality on B7 by default
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 TAP_DANCE_ENABLE = yes
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), lazydesigners/dimple/staggered/rev3)
@@ -80,7 +80,7 @@ BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality on B7 by d
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 TAP_DANCE_ENABLE = yes
 COMBO_ENABLE = yes
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), alpha)
@@ -91,7 +91,7 @@ NKRO_ENABLE = yes
 LED_ANIMATIONS = yes
 MOUSEKEY_ENABLE = yes
 BOOTLOADER = atmel-dfu
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), tominabox1/qaz)
@@ -103,7 +103,7 @@ LED_ANIMATIONS = no
 MOUSEKEY_ENABLE = yes
 BOOTLOADER = atmel-dfu
 DYNAMIC_MACRO_ENABLE = yes
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), tominabox1/underscore33/rev2)
@@ -114,7 +114,7 @@ DYNAMIC_MACRO_ENABLE = no
 MOUSEKEY_ENABLE = yes
 CONSOLE_ENABLE = no
 LTO_ENABLE = yes
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), tominabox1/leftover30_arm)
@@ -128,7 +128,7 @@ ENCODER_ENABLE = yes
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = no
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), tominabox1/adalyn)
@@ -142,7 +142,7 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = no
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), tominabox1/littlefoot_lx/rev1)
@@ -156,7 +156,7 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = no
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), jd40)
@@ -170,7 +170,7 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = no
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), tominabox1/alexei)
@@ -184,7 +184,7 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = no
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), massdrop/alt)
@@ -198,7 +198,7 @@ EXTRAKEY_ENABLE = yes
 LTO_ENABLE = no
 BOOTMAGIC_ENABLE = yes
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), key_6fe18b72)
@@ -212,7 +212,7 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = no
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), mb44)
@@ -226,7 +226,7 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = no
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)), bastardkb/skeletyl)
@@ -240,7 +240,7 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)),lazydesigners/apricot)
@@ -254,7 +254,7 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
 
 ifeq ($(strip $(KEYBOARD)),dd40)
@@ -268,5 +268,19 @@ ENCODER_ENABLE = no
 EXTRAKEY_ENABLE = yes
 LTO_ENABLE = yes
 #EXTRAFLAGS += -flto
-SRC += tominabox1.c
+INTROSPECTION_KEYMAP_C = tominabox1.c
 endif
+
+# ifeq ($(strip $(KEYBOARD)),lily58/rev1)
+# TAP_DANCE_ENABLE = yes
+# COMBO_ENABLE = yes
+# RGB_MATRIX_ENABLE = no
+# DYNAMIC_MACRO_ENABLE = no
+# MOUSEKEY_ENABLE = no
+# CONSOLE_ENABLE = no
+# ENCODER_ENABLE = no
+# EXTRAKEY_ENABLE = yes
+# # LTO_ENABLE = yes
+# #EXTRAFLAGS += -flto
+# INTROSPECTION_KEYMAP_C = tominabox1.c
+# endif

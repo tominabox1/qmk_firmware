@@ -1,6 +1,6 @@
 // Combos
 
-enum combo_events {
+enum combos {
   CRET,
   COMBOPP,
   COMBO_NEXT,
