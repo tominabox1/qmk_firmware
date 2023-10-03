@@ -2,6 +2,8 @@
 #define QMK_ESC_OUTPUT C6  // usually COL
 #define QMK_ESC_INPUT F6  // usually ROW
 #define QMK_LED BO
+#undef TAP_CODE_DELAY
+#define TAP_CODE_DELAY 50
 
 #ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
@@ -19,6 +21,8 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   BOMB_DROP,
+  SUBIO,
+  SUBIO2,
 };
 
 enum {
@@ -46,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_F7,   KC_F8,   KC_F9,    KC_E,    KC_R,    BOMB_DROP,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS, \
   KC_LCTL, KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
   KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, MO(_FKEY),  KC_NO,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, \
-                             DM_REC1, DM_REC2,KC_SPC, DM_PLY2,   KC_ENT,   RAISE,   KC_BSPC, KC_RGUI \
+                             SUBIO, SUBIO2,KC_SPC, DM_PLY2,   KC_ENT,   RAISE,   KC_BSPC, KC_RGUI \
 ),
 };
 
@@ -63,12 +67,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case BOMB_DROP:
         if (record->event.pressed) {
             tap_code(KC_5);
+            _delay_ms(20);
             tap_code(KC_G);
-        } else {
-
         }
-    break;
+        else {
+            // when keycode QMKBEST is released
+        }
+        break;
+
+        case SUBIO:
+            if (record->event.pressed) {
+                send_string("connect cs2.sub.io; password lljk");
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+            case SUBIO2:
+                if (record->event.pressed) {
+                    send_string("connect cs2.sub.io:27016;password llj");
+                } else {
+                    // when keycode QMKBEST is released
+                }
+                break;
     }
-    return true;
+                return true;
 };
 
