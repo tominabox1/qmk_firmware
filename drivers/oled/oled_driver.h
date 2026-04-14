@@ -53,12 +53,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // For 90 degree rotation, we map our internal matrix to oled matrix using fixed arrays
 // The OLED writes to it's memory horizontally, starting top left, but our memory starts bottom left in this mode
 #    ifndef OLED_SOURCE_MAP
-#        define OLED_SOURCE_MAP \
-            { 0, 8, 16, 24, 32, 40, 48, 56 }
+#        define OLED_SOURCE_MAP {0, 8, 16, 24, 32, 40, 48, 56}
 #    endif
 #    ifndef OLED_TARGET_MAP
-#        define OLED_TARGET_MAP \
-            { 56, 48, 40, 32, 24, 16, 8, 0 }
+#        define OLED_TARGET_MAP {56, 48, 40, 32, 24, 16, 8, 0}
 #    endif
 // If OLED_BLOCK_TYPE is uint32_t, these tables would look like:
 // #define OLED_SOURCE_MAP { 32, 40, 48, 56 }
@@ -97,12 +95,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    endif
 
 #    ifndef OLED_SOURCE_MAP
-#        define OLED_SOURCE_MAP \
-            { 0, 8, 16, 24 }
+#        define OLED_SOURCE_MAP {0, 8, 16, 24}
 #    endif
 #    ifndef OLED_TARGET_MAP
-#        define OLED_TARGET_MAP \
-            { 24, 16, 8, 0 }
+#        define OLED_TARGET_MAP {24, 16, 8, 0}
 #    endif
 
 #elif defined(OLED_DISPLAY_64X48)
@@ -132,12 +128,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    endif
 
 #    ifndef OLED_SOURCE_MAP
-#        define OLED_SOURCE_MAP \
-            { 0, 8 }
+#        define OLED_SOURCE_MAP {0, 8}
 #    endif
 #    ifndef OLED_TARGET_MAP
-#        define OLED_TARGET_MAP \
-            { 8, 0 }
+#        define OLED_TARGET_MAP {8, 0}
 #    endif
 
 #elif defined(OLED_DISPLAY_64X128)
@@ -170,12 +164,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    endif
 
 #    ifndef OLED_SOURCE_MAP
-#        define OLED_SOURCE_MAP \
-            { 0, 8, 16, 24, 32, 40, 48, 56 }
+#        define OLED_SOURCE_MAP {0, 8, 16, 24, 32, 40, 48, 56}
 #    endif
 #    ifndef OLED_TARGET_MAP
-#        define OLED_TARGET_MAP \
-            { 56, 48, 40, 32, 24, 16, 8, 0 }
+#        define OLED_TARGET_MAP {56, 48, 40, 32, 24, 16, 8, 0}
 #    endif
 
 #elif defined(OLED_DISPLAY_128X128)
@@ -208,12 +200,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // For 90 degree rotation, we map our internal matrix to oled matrix using fixed arrays
 // The OLED writes to it's memory horizontally, starting top left, but our memory starts bottom left in this mode
 #    ifndef OLED_SOURCE_MAP
-#        define OLED_SOURCE_MAP \
-            { 0, 8, 16, 24, 32, 40, 48, 56 }
+#        define OLED_SOURCE_MAP {0, 8, 16, 24, 32, 40, 48, 56}
 #    endif
 #    ifndef OLED_TARGET_MAP
-#        define OLED_TARGET_MAP \
-            { 56, 48, 40, 32, 24, 16, 8, 0 }
+#        define OLED_TARGET_MAP {56, 48, 40, 32, 24, 16, 8, 0}
 #    endif
 #else // defined(OLED_DISPLAY_128X64)
 // Default 128x32
@@ -242,12 +232,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // For 90 degree rotation, we map our internal matrix to oled matrix using fixed arrays
 // The OLED writes to it's memory horizontally, starting top left, but our memory starts bottom left in this mode
 #    ifndef OLED_SOURCE_MAP
-#        define OLED_SOURCE_MAP \
-            { 0, 8, 16, 24 }
+#        define OLED_SOURCE_MAP {0, 8, 16, 24}
 #    endif
 #    ifndef OLED_TARGET_MAP
-#        define OLED_TARGET_MAP \
-            { 24, 16, 8, 0 }
+#        define OLED_TARGET_MAP {24, 16, 8, 0}
 #    endif
 // If OLED_BLOCK_TYPE is uint8_t, these tables would look like:
 // #define OLED_SOURCE_MAP { 0, 8, 16, 24, 32, 40, 48, 56 }
@@ -353,20 +341,24 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation);
 // Clears the display buffer, resets cursor position to 0, and sets the buffer to dirty for rendering
 void oled_clear(void);
 
-// Renders the dirty chunks of the buffer to oled display
-void oled_render(void);
+// Alias to oled_render_dirty to avoid a change in api.
+#define oled_render() oled_render_dirty(false)
+
+// Renders all dirty blocks to the display at one time or a subset depending on the value of
+// all.
+void oled_render_dirty(bool all);
 
 // Moves cursor to character position indicated by column and line, wraps if out of bounds
 // Max column denoted by 'oled_max_chars()' and max lines by 'oled_max_lines()' functions
 void oled_set_cursor(uint8_t col, uint8_t line);
 
 // Advances the cursor to the next page, writing ' ' if true
-// Wraps to the begining when out of bounds
+// Wraps to the beginning when out of bounds
 void oled_advance_page(bool clearPageRemainder);
 
 // Moves the cursor forward 1 character length
 // Advance page if there is not enough room for the next character
-// Wraps to the begining when out of bounds
+// Wraps to the beginning when out of bounds
 void oled_advance_char(void);
 
 // Writes a single character to the buffer at current cursor position
@@ -433,10 +425,10 @@ bool oled_off(void);
 // not
 bool is_oled_on(void);
 
-// Sets the brightness of the display
+// Sets the brightness level of the display
 uint8_t oled_set_brightness(uint8_t level);
 
-// Gets the current brightness of the display
+// Gets the current brightness level of the display
 uint8_t oled_get_brightness(void);
 
 // Basically it's oled_render, but with timeout management and oled_task_user calling!
@@ -458,12 +450,12 @@ void oled_scroll_set_area(uint8_t start_line, uint8_t end_line);
 // 0=2, 1=3, 2=4, 3=5, 4=25, 5=64, 6=128, 7=256
 void oled_scroll_set_speed(uint8_t speed);
 
-// Scrolls the entire display right
+// Begin scrolling the entire display right
 // Returns true if the screen was scrolling or starts scrolling
 // NOTE: display contents cannot be changed while scrolling
 bool oled_scroll_right(void);
 
-// Scrolls the entire display left
+// Begin scrolling the entire display left
 // Returns true if the screen was scrolling or starts scrolling
 // NOTE: display contents cannot be changed while scrolling
 bool oled_scroll_left(void);

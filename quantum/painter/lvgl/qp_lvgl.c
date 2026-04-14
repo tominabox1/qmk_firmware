@@ -17,7 +17,7 @@ static deferred_executor_t lvgl_executors[2] = {0}; // For lv_tick_inc and lv_ta
 static lvgl_state_t        lvgl_states[2]    = {0}; // For lv_tick_inc and lv_task_handler
 
 painter_device_t selected_display = NULL;
-void *           color_buffer     = NULL;
+void            *color_buffer     = NULL;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Quantum Painter LVGL Integration Internal: qp_lvgl_flush
@@ -33,7 +33,7 @@ void qp_lvgl_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color
 }
 
 static uint32_t tick_task_callback(uint32_t trigger_time, void *cb_arg) {
-    lvgl_state_t *  state     = (lvgl_state_t *)cb_arg;
+    lvgl_state_t   *state     = (lvgl_state_t *)cb_arg;
     static uint32_t last_tick = 0;
     switch (state->fnc_id) {
         case 0: {
@@ -81,8 +81,8 @@ bool qp_lvgl_attach(painter_device_t device) {
 
     lvgl_state_t *lv_task_handler_state = &lvgl_states[1];
     lv_task_handler_state->fnc_id       = 1;
-    lv_task_handler_state->delay_ms     = 5;
-    lv_task_handler_state->defer_token  = defer_exec_advanced(lvgl_executors, 2, 5, tick_task_callback, lv_task_handler_state);
+    lv_task_handler_state->delay_ms     = QP_LVGL_TASK_PERIOD;
+    lv_task_handler_state->defer_token  = defer_exec_advanced(lvgl_executors, 2, QP_LVGL_TASK_PERIOD, tick_task_callback, lv_task_handler_state);
 
     if (lv_task_handler_state->defer_token == INVALID_DEFERRED_TOKEN) {
         qp_dprintf("qp_lvgl_attach: fail (could not set up qp_lvgl executor)\n");
@@ -96,13 +96,14 @@ bool qp_lvgl_attach(painter_device_t device) {
     // Set up lvgl display buffer
     static lv_disp_draw_buf_t draw_buf;
     // Allocate a buffer for 1/10 screen size
-    const size_t count_required = driver->panel_width * driver->panel_height / 10;
-    color_buffer                = color_buffer ? realloc(color_buffer, sizeof(lv_color_t) * count_required) : malloc(sizeof(lv_color_t) * count_required);
-    if (!color_buffer) {
+    const size_t count_required   = driver->panel_width * driver->panel_height / 10;
+    void        *new_color_buffer = realloc(color_buffer, sizeof(lv_color_t) * count_required);
+    if (!new_color_buffer) {
         qp_dprintf("qp_lvgl_attach: fail (could not set up memory buffer)\n");
         qp_lvgl_detach();
         return false;
     }
+    color_buffer = new_color_buffer;
     memset(color_buffer, 0, sizeof(lv_color_t) * count_required);
     // Initialize the display buffer.
     lv_disp_draw_buf_init(&draw_buf, color_buffer, NULL, count_required);

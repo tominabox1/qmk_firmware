@@ -1,2 +1,0 @@
-#undef MATRIX_ROW_PINS
-#define MATRIX_ROW_PINS { D3, D6, D5, D4 }

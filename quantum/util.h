@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "bits.h"
 #include "bitwise.h"
 
 // convert to string
@@ -23,7 +24,7 @@
  * @brief Computes the rounded up result of a division of two integers at
  * compile time.
  */
-#    define CEILING(dividend, divisor) (((dividend) + (divisor)-1) / (divisor))
+#    define CEILING(dividend, divisor) (((dividend) + (divisor) - 1) / (divisor))
 #endif
 
 #if !defined(IS_ARRAY)
@@ -45,4 +46,12 @@
  * error message for scalar values is poor.
  */
 #    define ARRAY_SIZE(array) (__builtin_choose_expr(IS_ARRAY((array)), sizeof((array)) / sizeof((array)[0]), (void)0))
+#endif
+
+#if !defined(PACKED)
+#    define PACKED __attribute__((__packed__))
+#endif
+
+#if __has_include("_util.h")
+#    include "_util.h" /* Include the platform's _util.h */
 #endif

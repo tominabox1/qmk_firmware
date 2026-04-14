@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include <stdint.h>
+
+#include "compiler_support.h"
 #include "report.h"
 #include "modifiers.h"
 
@@ -25,25 +27,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern "C" {
 #endif
 
+typedef union {
+    uint8_t raw;
+    struct {
+        bool left_ctrl : 1;
+        bool left_shift : 1;
+        bool left_alt : 1;
+        bool left_gui : 1;
+        bool right_ctrl : 1;
+        bool right_shift : 1;
+        bool right_alt : 1;
+        bool right_gui : 1;
+    };
+} PACKED mod_t;
+STATIC_ASSERT(sizeof(mod_t) == sizeof(uint8_t), "Invalid size for 'mod_t'");
+
 extern report_keyboard_t *keyboard_report;
+#ifdef NKRO_ENABLE
+extern report_nkro_t *nkro_report;
+#endif
 
 void send_keyboard_report(void);
 
 /* key */
 inline void add_key(uint8_t key) {
-    add_key_to_report(keyboard_report, key);
+    add_key_to_report(key);
 }
 
 inline void del_key(uint8_t key) {
-    del_key_from_report(keyboard_report, key);
+    del_key_from_report(key);
 }
 
 inline void clear_keys(void) {
-    clear_keys_from_report(keyboard_report);
+    clear_keys_from_report();
 }
 
 /* modifier */
 uint8_t get_mods(void);
+mod_t   get_mod_state(void);
 void    add_mods(uint8_t mods);
 void    del_mods(uint8_t mods);
 void    set_mods(uint8_t mods);
@@ -51,6 +72,7 @@ void    clear_mods(void);
 
 /* weak modifier */
 uint8_t get_weak_mods(void);
+mod_t   get_weak_mod_state(void);
 void    add_weak_mods(uint8_t mods);
 void    del_weak_mods(uint8_t mods);
 void    set_weak_mods(uint8_t mods);
@@ -58,6 +80,7 @@ void    clear_weak_mods(void);
 
 /* oneshot modifier */
 uint8_t get_oneshot_mods(void);
+mod_t   get_oneshot_mod_state(void);
 void    add_oneshot_mods(uint8_t mods);
 void    del_oneshot_mods(uint8_t mods);
 void    set_oneshot_mods(uint8_t mods);
@@ -65,6 +88,7 @@ void    clear_oneshot_mods(void);
 bool    has_oneshot_mods_timed_out(void);
 
 uint8_t get_oneshot_locked_mods(void);
+mod_t   get_oneshot_locked_mod_state(void);
 void    add_oneshot_locked_mods(uint8_t mods);
 void    set_oneshot_locked_mods(uint8_t mods);
 void    clear_oneshot_locked_mods(void);
@@ -111,8 +135,7 @@ void clear_oneshot_swaphands(void);
 void neutralize_flashing_modifiers(uint8_t active_mods);
 #endif
 #ifndef MODS_TO_NEUTRALIZE
-#    define MODS_TO_NEUTRALIZE \
-        { MOD_BIT(KC_LEFT_ALT), MOD_BIT(KC_LEFT_GUI) }
+#    define MODS_TO_NEUTRALIZE {MOD_BIT(KC_LEFT_ALT), MOD_BIT(KC_LEFT_GUI)}
 #endif
 
 #ifdef __cplusplus
