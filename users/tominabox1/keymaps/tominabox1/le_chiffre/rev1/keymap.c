@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_NAV] = LAYOUT(
-    KC_NO,  KC_MS_BTN1,KC_MS_UP,  KC_MS_BTN2,  KC_WH_U, KC_TRNS,   KC_GRV,  KC_PGDN,    KC_UP,  KC_PGUP,  TD(TD_RESET),
+    KC_SCROLL_LOCK,  KC_1,  KC_2,  KC_WH_U, KC_TRNS,   KC_GRV,  KC_PGDN,    KC_UP,  KC_PGUP,  TD(TD_RESET),
     RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  KC_WH_D,           KC_HOME,  KC_LEFT,  KC_DOWN,  KC_RGHT,   KC_END,
     RGB_MOD,  RGB_HUD,  RGB_SAD,  RGB_VAD,  KC_NO,           KC_MINS,    KC_R,  KC_COMM,   KC_DOT,  KC_BSLS,
                                   LWIN(LCTL(KC_LEFT)),KC_MS_BTN1,           LWIN(LCTL(KC_LEFT)), LWIN(LCTL(KC_RIGHT))
